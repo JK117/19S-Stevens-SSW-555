@@ -54,10 +54,15 @@ class Gedcom():
                     temp_dict['Gender'] = temp_line[2]
                 elif (temp_line[0] == '1' and temp_line[1] == 'BIRT'):
                     temp_dict['Birthday'] = self.record_arr[i+1][2:]
-                    temp_dict['Age'] = 2019 - int(self.record_arr[i+1][-1])
+                    # print(self.record_arr[i+1][-4:])
+                    temp_dict['Age'] = 2019 - int(self.record_arr[i+1][-4:])
+                    # print(temp_dict['Age'])
+                    # print(temp_dict['ID'])
                 elif (temp_line[0] == '1' and temp_line[1] == 'DEAT'):
                     # print(temp_dict['Birthday'])
-                    temp_dict['Age'] = int(self.record_arr[i+1][-1]) - int(temp_dict['Birthday'][-1])
+                    temp_dict['Age'] = int(self.record_arr[i+1][-4:]) - int(temp_dict['Birthday'][-4:])
+                    # print(temp_dict['Age'])
+                    # print(temp_dict['ID'])
                     temp_dict['Death'] = self.record_arr[i+1][3:]
                 elif (temp_line[0] == '1' and temp_line[1] == 'HUSB'):
                     temp_dict['Husband ID'] = temp_line[2]
@@ -71,6 +76,8 @@ class Gedcom():
                         temp_dict['Children'].append(temp_line[2])
                 elif (temp_line[0] == '1' and temp_line[1] == 'MARR'):
                     temp_dict['Married'] = self.record_arr[i+1][2:]
+                elif (temp_line[0] == '1' and temp_line[1] == 'DIV'):
+                    temp_dict['Divorced'] =  temp_line[3:]
 
         print(self.families)
         print(self.individual)
