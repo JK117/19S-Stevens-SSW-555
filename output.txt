@@ -1,0 +1,302 @@
+--> 0 HEAD
+<-- 0|HEAD|Y
+--> 0 NOTE Created by Jiakuan Fan for SSW 555
+<-- 0|NOTE|Y|Created by Jiakuan Fan for SSW 555
+--> 0 @I1@ INDI
+<-- 0|INDI|Y|@I1@
+--> 1 NAME Jackson /Williams/
+<-- 1|NAME|Y|Jackson /Williams/
+--> 1 SEX M
+<-- 1|SEX|Y|M
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 5 SEP 1930
+<-- 2|DATE|Y|5 SEP 1930
+--> 1 DEAT Y
+<-- 1|DEAT|Y|Y
+--> 2 DATE 1 JAN 2008
+<-- 2|DATE|Y|1 JAN 2008
+--> 1 FAMS @F1@
+<-- 1|FAMS|Y|@F1@
+--> 0 @I2@ INDI
+<-- 0|INDI|Y|@I2@
+--> 1 NAME Diana /Smith/
+<-- 1|NAME|Y|Diana /Smith/
+--> 1 SEX F
+<-- 1|SEX|Y|F
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 1 JUL 2015
+<-- 2|DATE|Y|1 JUL 2015
+--> 1 DEAT Y
+<-- 1|DEAT|Y|Y
+--> 2 DATE 5 MAY 1982
+<-- 2|DATE|Y|5 MAY 1982
+--> 1 FAMS @F1@
+<-- 1|FAMS|Y|@F1@
+--> 0 @I3@ INDI
+<-- 0|INDI|Y|@I3@
+--> 1 NAME John /Williams/
+<-- 1|NAME|Y|John /Williams/
+--> 1 SEX M
+<-- 1|SEX|Y|M
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 13 FEB 1957
+<-- 2|DATE|Y|13 FEB 1957
+--> 1 FAMS @F2@
+<-- 1|FAMS|Y|@F2@
+--> 1 FAMC @F1@
+<-- 1|FAMC|Y|@F1@
+--> 0 @I4@ INDI
+<-- 0|INDI|Y|@I4@
+--> 1 NAME Jennifer /Williams/
+<-- 1|NAME|Y|Jennifer /Williams/
+--> 1 SEX F
+<-- 1|SEX|Y|F
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 10 SEP 1962
+<-- 2|DATE|Y|10 SEP 1962
+--> 1 FAMS @F3@
+<-- 1|FAMS|Y|@F3@
+--> 1 FAMC @F1@
+<-- 1|FAMC|Y|@F1@
+--> 0 @I5@ INDI
+<-- 0|INDI|Y|@I5@
+--> 1 NAME Elizabeth /Williams/
+<-- 1|NAME|Y|Elizabeth /Williams/
+--> 1 SEX F
+<-- 1|SEX|Y|F
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 14 MAY 1965
+<-- 2|DATE|Y|14 MAY 1965
+--> 1 FAMS @F4@
+<-- 1|FAMS|Y|@F4@
+--> 1 FAMC @F1@
+<-- 1|FAMC|Y|@F1@
+--> 0 @I6@ INDI
+<-- 0|INDI|Y|@I6@
+--> 1 NAME Sarah /Adams/
+<-- 1|NAME|Y|Sarah /Adams/
+--> 1 SEX F
+<-- 1|SEX|Y|F
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 1 MAR 1957
+<-- 2|DATE|Y|1 MAR 1957
+--> 1 FAMS @F2@
+<-- 1|FAMS|Y|@F2@
+--> 1 FAMS @F5@
+<-- 1|FAMS|Y|@F5@
+--> 0 @I7@ INDI
+<-- 0|INDI|Y|@I7@
+--> 1 NAME Micheal /Davis/
+<-- 1|NAME|Y|Micheal /Davis/
+--> 1 SEX M
+<-- 1|SEX|Y|M
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 1 APR 1955
+<-- 2|DATE|Y|1 APR 1955
+--> 1 FAMS @F5@
+<-- 1|FAMS|Y|@F5@
+--> 0 @I8@ INDI
+<-- 0|INDI|Y|@I8@
+--> 1 NAME Steven /Williams/
+<-- 1|NAME|Y|Steven /Williams/
+--> 1 SEX M
+<-- 1|SEX|Y|M
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 16 APR 1985
+<-- 2|DATE|Y|16 APR 1985
+--> 1 FAMS @F6@
+<-- 1|FAMS|Y|@F6@
+--> 1 FAMC @F2@
+<-- 1|FAMC|Y|@F2@
+--> 0 @I9@ INDI
+<-- 0|INDI|Y|@I9@
+--> 1 NAME Charles /Davis/
+<-- 1|NAME|Y|Charles /Davis/
+--> 1 SEX M
+<-- 1|SEX|Y|M
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 15 NOV 1996
+<-- 2|DATE|Y|15 NOV 1996
+--> 1 FAMC @F5@
+<-- 1|FAMC|Y|@F5@
+--> 0 @I10@ INDI
+<-- 0|INDI|Y|@I10@
+--> 1 NAME Robert /Miller/
+<-- 1|NAME|Y|Robert /Miller/
+--> 1 SEX M
+<-- 1|SEX|Y|M
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 4 OCT 1961
+<-- 2|DATE|Y|4 OCT 1961
+--> 1 DEAT Y
+<-- 1|DEAT|Y|Y
+--> 2 DATE 12 FEB 1994
+<-- 2|DATE|Y|12 FEB 1994
+--> 1 FAMS @F3@
+<-- 1|FAMS|Y|@F3@
+--> 0 @I11@ INDI
+<-- 0|INDI|Y|@I11@
+--> 1 NAME Karen /Miller/
+<-- 1|NAME|Y|Karen /Miller/
+--> 1 SEX F
+<-- 1|SEX|Y|F
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 14 MAY 1990
+<-- 2|DATE|Y|14 MAY 1990
+--> 1 FAMC @F3@
+<-- 1|FAMC|Y|@F3@
+--> 0 @I12@ INDI
+<-- 0|INDI|Y|@I12@
+--> 1 NAME Nancy /Miller/
+<-- 1|NAME|Y|Nancy /Miller/
+--> 1 SEX F
+<-- 1|SEX|Y|F
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 12 NOV 1992
+<-- 2|DATE|Y|12 NOV 1992
+--> 1 FAMC @F3@
+<-- 1|FAMC|Y|@F3@
+--> 0 @I13@ INDI
+<-- 0|INDI|Y|@I13@
+--> 1 NAME Clark /Murphy/
+<-- 1|NAME|Y|Clark /Murphy/
+--> 1 SEX M
+<-- 1|SEX|Y|M
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 11 OCT 1965
+<-- 2|DATE|Y|11 OCT 1965
+--> 1 FAMS @F4@
+<-- 1|FAMS|Y|@F4@
+--> 0 @I14@ INDI
+<-- 0|INDI|Y|@I14@
+--> 1 NAME Daniel /Murphy/
+<-- 1|NAME|Y|Daniel /Murphy/
+--> 1 SEX M
+<-- 1|SEX|Y|M
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 12 JUN 1990
+<-- 2|DATE|Y|12 JUN 1990
+--> 1 FAMC @F4@
+<-- 1|FAMC|Y|@F4@
+--> 0 @I15@ INDI
+<-- 0|INDI|Y|@I15@
+--> 1 NAME Ashley /Murphy/
+<-- 1|NAME|Y|Ashley /Murphy/
+--> 1 SEX F
+<-- 1|SEX|Y|F
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 7 SEP 1993
+<-- 2|DATE|Y|7 SEP 1993
+--> 1 FAMC @F4@
+<-- 1|FAMC|Y|@F4@
+--> 0 @I16@ INDI
+<-- 0|INDI|Y|@I16@
+--> 1 NAME Carol /Gray/
+<-- 1|NAME|Y|Carol /Gray/
+--> 1 SEX F
+<-- 1|SEX|Y|F
+--> 1 BIRT
+<-- 1|BIRT|Y|
+--> 2 DATE 1 OCT 1988
+<-- 2|DATE|Y|1 OCT 1988
+--> 1 FAMS @F6@
+<-- 1|FAMS|Y|@F6@
+--> 0 @F1@ FAM
+<-- 0|FAM|Y|@F1@
+--> 1 HUSB @I1@
+<-- 1|HUSB|Y|@I1@
+--> 1 WIFE @I2@
+<-- 1|WIFE|Y|@I2@
+--> 1 CHIL @I3@
+<-- 1|CHIL|Y|@I3@
+--> 1 CHIL @I4@
+<-- 1|CHIL|Y|@I4@
+--> 1 CHIL @I5@
+<-- 1|CHIL|Y|@I5@
+--> 1 MARR
+<-- 1|MARR|Y|
+--> 2 DATE 8 JUN 1925
+<-- 2|DATE|Y|8 JUN 1925
+--> 0 @F2@ FAM
+<-- 0|FAM|Y|@F2@
+--> 1 HUSB @I3@
+<-- 1|HUSB|Y|@I3@
+--> 1 WIFE @I6@
+<-- 1|WIFE|Y|@I6@
+--> 1 CHIL @I8@
+<-- 1|CHIL|Y|@I8@
+--> 1 MARR
+<-- 1|MARR|Y|
+--> 2 DATE 15 MAY 1952
+<-- 2|DATE|Y|15 MAY 1952
+--> 1 DIV
+<-- 1|DIV|Y|
+--> 2 DATE 22 JUN 1962
+<-- 2|DATE|Y|22 JUN 1962
+--> 0 @F5@ FAM
+<-- 0|FAM|Y|@F5@
+--> 1 HUSB @I7@
+<-- 1|HUSB|Y|@I7@
+--> 1 WIFE @I6@
+<-- 1|WIFE|Y|@I6@
+--> 1 CHIL @I9@
+<-- 1|CHIL|Y|@I9@
+--> 1 MARR
+<-- 1|MARR|Y|
+--> 2 DATE 12 JUL 1965
+<-- 2|DATE|Y|12 JUL 1965
+--> 0 @F3@ FAM
+<-- 0|FAM|Y|@F3@
+--> 1 HUSB @I10@
+<-- 1|HUSB|Y|@I10@
+--> 1 WIFE @I4@
+<-- 1|WIFE|Y|@I4@
+--> 1 CHIL @I11@
+<-- 1|CHIL|Y|@I11@
+--> 1 CHIL @I12@
+<-- 1|CHIL|Y|@I12@
+--> 1 MARR
+<-- 1|MARR|Y|
+--> 2 DATE 4 MAR 1988
+<-- 2|DATE|Y|4 MAR 1988
+--> 0 @F4@ FAM
+<-- 0|FAM|Y|@F4@
+--> 1 HUSB @I13@
+<-- 1|HUSB|Y|@I13@
+--> 1 WIFE @I5@
+<-- 1|WIFE|Y|@I5@
+--> 1 CHIL @I14@
+<-- 1|CHIL|Y|@I14@
+--> 1 CHIL @I15@
+<-- 1|CHIL|Y|@I15@
+--> 1 MARR
+<-- 1|MARR|Y|
+--> 2 DATE 12 JUN 1991
+<-- 2|DATE|Y|12 JUN 1991
+--> 0 @F6@ FAM
+<-- 0|FAM|Y|@F6@
+--> 1 HUSB @I8@
+<-- 1|HUSB|Y|@I8@
+--> 1 WIFE @I16@
+<-- 1|WIFE|Y|@I16@
+--> 1 MARR
+<-- 1|MARR|Y|
+--> 2 DATE 6 APR 2015
+<-- 2|DATE|Y|6 APR 2015
+--> 0 TRLR
+<-- 0|TRLR|Y
