@@ -1,7 +1,7 @@
 # Project for SSW-555
 # Author: Jiakuan Fan
 # Author: Hangbo Li
-
+# Author: Shan Jiang
 
 class Gedcom():
     def __init__(self):
