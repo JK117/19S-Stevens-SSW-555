@@ -1,5 +1,6 @@
 # Project for SSW-555
 # Author: Jiakuan Fan
+# Author: Hangbo Li
 
 
 class Gedcom():
