@@ -1,4 +1,5 @@
 # Project for SSW-555
+# Author: Jiakuan Fan
 
 
 class Gedcom():
