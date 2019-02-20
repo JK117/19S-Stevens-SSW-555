@@ -1,7 +1,4 @@
-# Project 02 for SSW-555
-# Author: Jiakuan Fan
-
-import re
+# Project for SSW-555
 
 
 class Gedcom():
