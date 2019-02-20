@@ -65,5 +65,6 @@ if __name__ == '__main__':
     test_case = Gedcom()
     url = input("Please input test GEDCOM file url (press ENTER to use default url [./example.ged]): ")
     test_case.load_file(url)
-    test_case.create_output()
-    test_case.print_records()
+    print(test_case.record_arr)
+    # test_case.create_output()
+    # test_case.print_records()
