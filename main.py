@@ -82,6 +82,7 @@ class Gedcom():
         # print(self.families)
         # print(self.individual)
 
+
     def print_table(self):
         tb = pt.PrettyTable()
         tb.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
