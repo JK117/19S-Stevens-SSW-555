@@ -1,0 +1,31 @@
+This is the table of family:
++-------+-----------------------------+--------+------------------+-----+-------+-----------------+-------+--------+
+|   ID  |             Name            | Gender |     Birthday     | Age | Alive |      Death      | Child | Spouse |
++-------+-----------------------------+--------+------------------+-----+-------+-----------------+-------+--------+
+|  @I1@ |  ['Jackson', '/Williams/']  |   M    | DATE 5 SEP 1930  |  78 |  True |  ATE 1 JAN 2008 |   NA  |  @F1@  |
+|  @I2@ |     ['Diana', '/Smith/']    |   F    | DATE 1 JUL 1932  |  83 |  True |  ATE 5 MAY 2015 |   NA  |  @F1@  |
+|  @I3@ |    ['John', '/Williams/']   |   M    | DATE 13 FEB 1957 |  62 |  True |        NA       |   NA  |  @F2@  |
+|  @I4@ |  ['Jennifer', '/Williams/'] |   F    | DATE 10 SEP 1962 |  57 |  True |        NA       |   NA  |  @F3@  |
+|  @I5@ | ['Elizabeth', '/Williams/'] |   F    | DATE 14 MAY 1965 |  54 |  True |        NA       |   NA  |  @F4@  |
+|  @I6@ |     ['Sarah', '/Adams/']    |   F    | DATE 1 MAR 1957  |  62 |  True |        NA       |   NA  |  @F5@  |
+|  @I7@ |    ['Micheal', '/Davis/']   |   M    | DATE 1 APR 1955  |  64 |  True |        NA       |   NA  |  @F5@  |
+|  @I8@ |   ['Steven', '/Williams/']  |   M    | DATE 16 APR 1985 |  34 |  True |        NA       |  @F2@ |   NA   |
+|  @I9@ |    ['Charles', '/Davis/']   |   M    | DATE 15 NOV 1996 |  23 |  True |        NA       |  @F5@ |   NA   |
+| @I10@ |    ['Robert', '/Miller/']   |   M    | DATE 4 OCT 1961  |  33 |  True | ATE 12 FEB 1994 |   NA  |  @F3@  |
+| @I11@ |    ['Karen', '/Miller/']    |   F    | DATE 14 MAY 1990 |  29 |  True |        NA       |  @F3@ |   NA   |
+| @I12@ |    ['Nancy', '/Miller/']    |   F    | DATE 12 NOV 1992 |  27 |  True |        NA       |  @F3@ |   NA   |
+| @I13@ |    ['Clark', '/Murphy/']    |   M    | DATE 11 OCT 1965 |  54 |  True |        NA       |   NA  |  @F4@  |
+| @I14@ |    ['Daniel', '/Murphy/']   |   M    | DATE 12 JUN 1990 |  29 |  True |        NA       |  @F4@ |   NA   |
+| @I15@ |    ['Ashley', '/Murphy/']   |   F    | DATE 7 SEP 1993  |  26 |  True |        NA       |  @F4@ |   NA   |
+| @I16@ |     ['Carol', '/Gray/']     |   F    | DATE 1 OCT 1988  |  31 |  True |        NA       |  @F4@ |   NA   |
++-------+-----------------------------+--------+------------------+-----+-------+-----------------+-------+--------+
+This is the table of individual:
++------+--------------+--------------+------------+---------------------------+---------+-----------------------------+--------------------------+
+|  ID  |   Married    |   Divorced   | Husband ID |        Husband Name       | Wife ID |          Wife Name          |         Children         |
++------+--------------+--------------+------------+---------------------------+---------+-----------------------------+--------------------------+
+| @F1@ |  8 JUN 1925  |    False     |    @I1@    | ['Jackson', '/Williams/'] |   @I2@  |     ['Diana', '/Smith/']    | ['@I3@', '@I4@', '@I5@'] |
+| @F2@ |  15 MAY 1952 |  22 JUN 1962 |    @I3@    |   ['John', '/Williams/']  |   @I6@  |     ['Sarah', '/Adams/']    |         ['@I8@']         |
+| @F5@ |  12 JUL 1965 |    False     |    @I7@    |   ['Micheal', '/Davis/']  |   @I6@  |     ['Sarah', '/Adams/']    |         ['@I9@']         |
+| @F3@ |  4 MAR 1988  |    False     |   @I10@    |   ['Robert', '/Miller/']  |   @I4@  |  ['Jennifer', '/Williams/'] |    ['@I11@', '@I12@']    |
+| @F4@ |  12 JUN 1991 |    False     |   @I13@    |   ['Clark', '/Murphy/']   |   @I5@  | ['Elizabeth', '/Williams/'] |    ['@I14@', '@I15@']    |
++------+--------------+--------------+------------+---------------------------+---------+-----------------------------+--------------------------+
