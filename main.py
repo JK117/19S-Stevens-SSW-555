@@ -75,12 +75,46 @@ class Gedcom():
                         temp_dict['Children'] = []
                         temp_dict['Children'].append(temp_line[2])
                 elif (temp_line[0] == '1' and temp_line[1] == 'MARR'):
-                    temp_dict['Married'] = self.record_arr[i+1][2:]
+                    temp_dict['Married'] = self.record_arr[i+1][6:]
                 elif (temp_line[0] == '1' and temp_line[1] == 'DIV'):
-                    temp_dict['Divorced'] =  temp_line[3:]
+                    temp_dict['Divorced'] =  self.record_arr[i+1][6:]
 
-        print(self.families)
-        print(self.individual)
+        # print(self.families)
+        # print(self.individual)
+
+    def print_table(self):
+        tb = pt.PrettyTable()
+        tb.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
+        self.individual = self.individual[1:]
+        for item in self.individual:
+            for family in self.families:
+                if(item['ID'] == family['Husband ID'] or item['ID'] == family['Wife ID']):
+                    tempChild = "NA"
+                    tempSpouse = family["ID"]
+                if (item["ID"] in family['Children']):
+                    tempChild = family["ID"]
+                    tempSpouse = "NA"
+
+            tb.add_row([item['ID'], item['Name'], item["Gender"],item['Birthday'], item['Age'], item['Alive'], item["Death"], tempChild, tempSpouse] )
+
+        print(tb)
+        tb2 = pt.PrettyTable()
+        tb2.field_names = ["ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"]
+        for family in self.families:
+            for item in self.individual:
+                if(item['ID'] == family['Husband ID']):
+                    family['Husband Name'] = item['Name']
+                # else:
+                #     family['Husband Name'] = "NA"
+                if(item['ID'] == family['Wife ID']):
+                    family['Wife Name'] = item['Name']
+                # else:
+                #     family['Wife Name'] = 'NA'
+            tb2.add_row(
+                [family['ID'], family['Married'], family["Divorced"], family['Husband ID'], family['Husband Name'], family['Wife ID'], family["Wife Name"],
+                 family['Children']])
+
+        print(tb2)
 
 
     # def create_output(self):
@@ -124,6 +158,6 @@ if __name__ == '__main__':
     url = input("Please input test GEDCOM file url (press ENTER to use default url [./example.ged]): ")
     test_case.load_file(url)
     test_case.record_to_dict()
-    print(test_case.record_arr)
+    # print(test_case.record_arr)
     # test_case.create_output()
     # test_case.print_records()
