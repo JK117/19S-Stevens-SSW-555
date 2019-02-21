@@ -3,6 +3,8 @@
 # Author: Hangbo Li
 # Author: Shan Jiang
 
+import prettytable as pt
+
 class Gedcom():
     def __init__(self):
         self.record_arr = []
@@ -116,6 +118,15 @@ class Gedcom():
 
         print(tb2)
 
+        outputfile = "pj03_output.txt"
+        output = open(outputfile, "w")
+        output.write("This is the table of family:\n")
+        output.write(str(tb))
+        output.write("\n")
+        output.write("This is the table of individual:\n")
+        output.write(str(tb2))
+        output.close()
+
 
     # def create_output(self):
     #     for i in range(len(self.record_arr)):
@@ -158,6 +169,7 @@ if __name__ == '__main__':
     url = input("Please input test GEDCOM file url (press ENTER to use default url [./example.ged]): ")
     test_case.load_file(url)
     test_case.record_to_dict()
+    test_case.print_table()
     # print(test_case.record_arr)
     # test_case.create_output()
     # test_case.print_records()
