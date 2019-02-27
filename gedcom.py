@@ -1,4 +1,10 @@
 import prettytable as pt
+from datetime import datetime
+
+
+def convert_date(date_arr):
+    date_obj = datetime.strptime(' '.join(date_arr), '%d %b %Y').date()
+    return date_obj
 
 
 class Gedcom():
@@ -38,6 +44,7 @@ class Gedcom():
     # Store into self.individual_list
     def create_indi_object(self):
         idx = 0
+        today = datetime.today().date()
         while idx < len(self.record_list):
             if self.record_list[idx][0] == '0' and self.record_list[idx][1] != 'HEAD' \
                     and self.record_list[idx][1] != 'NOTE' and self.record_list[idx][1] != 'TRLR' \
@@ -53,20 +60,20 @@ class Gedcom():
                     if self.record_list[idx][0] == '1' and self.record_list[idx][1] == 'BIRT':
                         idx += 1
                         if self.record_list[idx][0] == '2' and self.record_list[idx][1] == 'DATE':
-                            indi_obj['Birthday'] = self.record_list[idx][2:]
+                            indi_obj['Birthday'] = convert_date(self.record_list[idx][2:])
                     if self.record_list[idx][0] == '1' and self.record_list[idx][1] == 'DEAT':
                         idx += 1
                         if self.record_list[idx][0] == '2' and self.record_list[idx][1] == 'DATE':
-                            indi_obj['Death'] = self.record_list[idx][2:]
+                            indi_obj['Death'] = convert_date(self.record_list[idx][2:])
                     if self.record_list[idx][0] == '1' and self.record_list[idx][1] == 'FAMC':
                         indi_obj['Child'] = self.record_list[idx][2]
                     if self.record_list[idx][0] == '1' and self.record_list[idx][1] == 'FAMS':
                         indi_obj['Spouse'] = self.record_list[idx][2]
                     if 'Birthday' in indi_obj.keys() and 'Death' not in indi_obj.keys():
-                        indi_obj['Age'] = 2019 - int(indi_obj['Birthday'][2])
+                        indi_obj['Age'] = today.year - indi_obj['Birthday'].year - ((today.month, today.day) < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
                         indi_obj['Alive'] = True
                     if 'Birthday' in indi_obj.keys() and 'Death' in indi_obj.keys():
-                        indi_obj['Age'] = int(indi_obj['Death'][2]) - int(indi_obj['Birthday'][2])
+                        indi_obj['Age'] = indi_obj['Death'].year - indi_obj['Birthday'].year - ((indi_obj['Death'].month, indi_obj['Death'].day) < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
                         indi_obj['Alive'] = False
                     idx += 1
                 self.individual_list.append(indi_obj)
@@ -96,11 +103,11 @@ class Gedcom():
                     if self.record_list[idx][0] == '1' and self.record_list[idx][1] == 'MARR':
                         idx += 1
                         if self.record_list[idx][0] == '2' and self.record_list[idx][1] == 'DATE':
-                            fam_obj['Married'] = self.record_list[idx][2:]
+                            fam_obj['Married'] = convert_date(self.record_list[idx][2:])
                     if self.record_list[idx][0] == '1' and self.record_list[idx][1] == 'DIV':
                         idx += 1
                         if self.record_list[idx][0] == '2' and self.record_list[idx][1] == 'DATE':
-                            fam_obj['Divorced'] = self.record_list[idx][2:]
+                            fam_obj['Divorced'] = convert_date(self.record_list[idx][2:])
                     idx += 1
                 self.family_list.append(fam_obj)
                 # print(fam_obj)
@@ -112,7 +119,7 @@ class Gedcom():
         indi_pt.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
         for individual in self.individual_list:
             if 'Death' in individual.keys():
-                table_death = str(' '.join(individual['Death']))
+                table_death = str(individual['Death'])
             else:
                 table_death = 'NA'
             if 'Child' in individual.keys():
@@ -123,7 +130,7 @@ class Gedcom():
                 table_spouse = individual['Spouse']
             else:
                 table_spouse = 'NA'
-            indi_pt.add_row([individual['ID'], individual['Name'], individual["Gender"], ' '.join(individual['Birthday']), individual['Age'], individual['Alive'],
+            indi_pt.add_row([individual['ID'], individual['Name'], individual["Gender"], str(individual['Birthday']), individual['Age'], individual['Alive'],
                              table_death, table_child, table_spouse])
         print(indi_pt)
 
@@ -140,10 +147,10 @@ class Gedcom():
             else:
                 table_children = 'NA'
             if 'Divorced' in family.keys():
-                table_divorced = ' '.join(family['Divorced'])
+                table_divorced = str(family['Divorced'])
             else:
                 table_divorced = 'NA'
-            fam_pt.add_row([family['ID'], ' '.join(family['Married']), table_divorced, family['Husband ID'],
+            fam_pt.add_row([family['ID'], str(family['Married']), table_divorced, family['Husband ID'],
                             family['Husband Name'], family['Wife ID'], family["Wife Name"], table_children])
         print(fam_pt)
 
