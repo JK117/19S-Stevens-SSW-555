@@ -8,7 +8,7 @@ def convert_date(date_arr):
 
 
 class Gedcom():
-    def __init__(self):
+    def __init__(self, input_url):
         self.line_list = []
         self.record_list = []
         self.output_list = []
@@ -17,6 +17,10 @@ class Gedcom():
         self.tier_0_tag = ['HEAD', 'TRLR', 'NOTE']
         self.tier_1_tag = ['NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS', 'MARR', 'HUSB', 'WIFE', 'CHIL', 'DIV']
         self.tier_2_tag = ['DATE']
+        self.load_file(input_url)
+        self.separate_line()
+        self.create_indi_object()
+        self.create_fam_object()
 
     # Load designated text file by line
     # Store into self.line_list
@@ -263,13 +267,30 @@ class Gedcom():
         print("HL")
 
     def check_birth_b4_marr(self):
-        print("JF")
+        for family in self.family_list:
+            husband_id = family['Husband ID']
+            wife_id = family['Wife ID']
+            marr_date = family['Married']
+            for individual in self.individual_list:
+                if individual['ID'] == husband_id:
+                    husband_birth = individual['Birthday']
+                    if husband_birth > marr_date:
+                        return False
+                if individual['ID'] == wife_id:
+                    wife_birth = individual['Birthday']
+                    if wife_birth > marr_date:
+                        return False
+        return True
 
     def check_birth_b4_death(self):
         print("SJ")
 
     def check_marr_b4_div(self):
-        print("JF")
+        for family in self.family_list:
+            if 'Divorced' in family.keys():
+                if family['Divorced'] < family['Married']:
+                    return False
+        return True
 
     def check_marr_b4_death(self):
         print("SJ")
