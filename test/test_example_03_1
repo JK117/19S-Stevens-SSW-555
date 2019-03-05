@@ -1,0 +1,22 @@
+0 HEAD
+0 NOTE There is no death before birthday
+
+0 @I1@ INDI
+1 NAME Jackson /Williams/
+1 SEX M
+1 BIRT
+2 DATE 5 SEP 1930
+1 DEAT Y
+2 DATE 1 JAN 2008
+1 FAMS @F1@
+
+0 @I2@ INDI
+1 NAME Diana /Smith/
+1 SEX F
+1 BIRT
+2 DATE 1 JUL 1932
+1 DEAT Y
+2 DATE 5 MAY 2015
+1 FAMS @F1@
+
+0 TRLR

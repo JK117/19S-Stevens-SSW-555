@@ -283,7 +283,11 @@ class Gedcom():
         return True
 
     def check_birth_b4_death(self):
-        print("SJ")
+        for individual in self.individual_list:
+            if 'Death' in individual.keys():
+                if individual['Birthday'] > individual['Death']:
+                    return False
+        return True
 
     def check_marr_b4_div(self):
         for family in self.family_list:
@@ -293,7 +297,21 @@ class Gedcom():
         return True
 
     def check_marr_b4_death(self):
-        print("SJ")
+        for family in self.family_list:
+            husband_id = family['Husband ID']
+            wife_id = family['Wife ID']
+            marr_date = family['Married']
+            for individual in self.individual_list:
+                if 'Death' in individual.keys():
+                    if individual['ID'] == husband_id:
+                        husband_death = individual['Death']
+                        if husband_death < marr_date:
+                            return False
+                    if individual['ID'] == wife_id:
+                        wife_death = individual['Death']
+                        if wife_death < marr_date:
+                            return False
+        return True
 
     def check_div_b4_death(self):
         print("HL")

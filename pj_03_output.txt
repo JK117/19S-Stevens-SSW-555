@@ -7,7 +7,7 @@ Individuals:
 |  @I3@ |   John /Williams/    |   M    | 1957-02-13 |  62 |  True |     NA     |  @F1@ |  @F2@  |
 |  @I4@ | Jennifer /Williams/  |   F    | 1962-09-10 |  56 |  True |     NA     |  @F1@ |  @F3@  |
 |  @I5@ | Elizabeth /Williams/ |   F    | 1965-05-14 |  53 |  True |     NA     |  @F1@ |  @F4@  |
-|  @I6@ |    Sarah /Adams/     |   F    | 1957-03-01 |  61 |  True |     NA     |   NA  |  @F5@  |
+|  @I6@ |    Sarah /Adams/     |   F    | 1957-03-01 |  62 |  True |     NA     |   NA  |  @F5@  |
 |  @I7@ |   Micheal /Davis/    |   M    | 1955-04-01 |  63 |  True |     NA     |   NA  |  @F5@  |
 |  @I8@ |  Steven /Williams/   |   M    | 1985-04-16 |  33 |  True |     NA     |  @F2@ |  @F6@  |
 |  @I9@ |   Charles /Davis/    |   M    | 1996-11-15 |  22 |  True |     NA     |  @F5@ |   NA   |

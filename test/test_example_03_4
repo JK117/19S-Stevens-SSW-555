@@ -1,0 +1,12 @@
+0 HEAD
+0 NOTE There is no death
+
+0 @I3@ INDI
+1 NAME John /Williams/
+1 SEX M
+1 BIRT
+2 DATE 13 FEB 1957
+1 FAMS @F2@
+1 FAMC @F1@
+
+0 TRLR
