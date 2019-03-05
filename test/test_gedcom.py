@@ -6,8 +6,12 @@ from gedcom import Gedcom
 
 
 class TestCheckFunctions(unittest.TestCase):
-    # def test_check_date_b4_current(self):
-    #     # Test check_date_b4_current() function
+    def test_check_date_b4_current(self):
+        # Test check_date_b4_current() function
+        test_case_05_1 = Gedcom("test_example_05_1")
+        test_case_05_2 = Gedcom("test_example_05_2")
+        self.assertTrue(test_case_05_2.check_date_b4_current())
+        self.assertFalse(test_case_05_1.check_date_b4_current())
 
     def test_check_birth_b4_marr(self):
         # Test check_birth_b4_marr() function
@@ -53,8 +57,12 @@ class TestCheckFunctions(unittest.TestCase):
         self.assertTrue(test_case_04_1.check_marr_b4_death())
         self.assertFalse(test_case_04_2.check_marr_b4_death())
 
-    # def test_check_div_b4_death(self):
-    #     # Test check_div_b4_death() function
+    def test_check_div_b4_death(self):
+        # Test check_div_b4_death() function
+        test_case_06_1 = Gedcom("test_example_06_1")
+        test_case_06_2 = Gedcom("test_example_06_2")
+        self.assertTrue(test_case_06_1.check_div_b4_death())
+        self.assertFalse(test_case_06_2.check_div_b4_death())
 
 
 if __name__ == '__main__':

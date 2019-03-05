@@ -264,7 +264,22 @@ class Gedcom():
         output.close()
 
     def check_date_b4_current(self):
-        print("HL")
+        today = datetime.today().date()
+        for indi in self.individual_list:
+            if 'Birthday' in indi.keys():
+                if indi["Birthday"] > today:
+                    return False
+            if "Death" in indi.keys():
+                if indi["Death"] > today:
+                    return False
+        for fami in self.family_list:
+            if "Married" in fami.keys():
+                if fami["Married"] > today:
+                    return False
+            if "Divorced" in fami.keys():
+                if fami["Divorced"] > today:
+                    return False
+        return True
 
     def check_birth_b4_marr(self):
         for family in self.family_list:
@@ -314,7 +329,15 @@ class Gedcom():
         return True
 
     def check_div_b4_death(self):
-        print("HL")
+        for indi in self.individual_list:
+            if "Death" in indi.keys():
+                for fami in self.family_list:
+                    if indi["ID"] == fami["Husband ID"] or indi["ID"] == fami["Wife ID"]:
+                        if "Divorced" in fami.keys():
+                            if indi["Death"] < fami["Divorced"]:
+                                return False
+        return True
+
 
     def create_arrow_output(self):
         for i in range(len(self.line_list)):
