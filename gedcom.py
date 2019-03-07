@@ -292,11 +292,11 @@ class Gedcom():
         # US02
         self.check_birth_b4_marr()
         # US03
-        # self.check_birth_b4_death()
+        self.check_birth_b4_death()
         # US04
         self.check_marr_b4_div()
         # US05
-        # self.check_marr_b4_death()
+        self.check_marr_b4_death()
         # US06
         self.check_div_b4_death()
 
