@@ -1,5 +1,5 @@
 # Project for SSW-555
-# Author: Jiakuan Fan
+# Author: Hangbo Li
 
 import unittest
 from gedcom import Gedcom
@@ -12,6 +12,19 @@ class TestCheckFunctions(unittest.TestCase):
         test_case_05_2 = Gedcom("test_example_05_2")
         self.assertTrue(test_case_05_2.check_date_b4_current())
         self.assertFalse(test_case_05_1.check_date_b4_current())
+
+    def test_number_date_b4_current(self):
+        test_case_05_1 = Gedcom("test_example_05_1")
+        test_case_05_2 = Gedcom("test_example_05_2")
+        self.assertEqual(1, test_case_05_1.number_date_b4_current())
+        self.assertNotEqual(1, test_case_05_2.number_date_b4_current())
+
+    def test_check_div_b4_death(self):
+        # Test check_div_b4_death() function
+        test_case_06_1 = Gedcom("test_example_06_1")
+        test_case_06_2 = Gedcom("test_example_06_2")
+        self.assertTrue(test_case_06_1.check_div_b4_death())
+        self.assertFalse(test_case_06_2.check_div_b4_death())
 
     def test_check_birth_b4_marr(self):
         # Test check_birth_b4_marr() function
@@ -38,31 +51,25 @@ class TestCheckFunctions(unittest.TestCase):
         self.assertFalse(test_case_03_3.check_birth_b4_death())
         self.assertTrue(test_case_03_4.check_birth_b4_death())
         self.assertTrue(test_case_03_5.check_birth_b4_death())
+    #
+    # def test_check_marr_b4_div(self):
+    #     # Test check_marr_b4_div() function
+    #     test_case_02_1 = Gedcom("test_example_02_1")
+    #     test_case_02_2 = Gedcom("test_example_02_2")
+    #     test_case_02_3 = Gedcom("test_example_02_3")
+    #     test_case_02_4 = Gedcom("test_example_02_4")
+    #     self.assertTrue(test_case_02_1.check_marr_b4_div())
+    #     self.assertTrue(test_case_02_2.check_marr_b4_div())
+    #     self.assertFalse(test_case_02_3.check_marr_b4_div())
+    #     self.assertTrue(test_case_02_4.check_marr_b4_div())
+    #
+    # def test_check_marr_b4_death(self):
+    #     # Test check_marr_b4_death() function
+    #     test_case_04_1 = Gedcom("test_example_04_1")
+    #     test_case_04_2 = Gedcom("test_example_04_2")
+    #     self.assertTrue(test_case_04_1.check_marr_b4_death())
+    #     self.assertFalse(test_case_04_2.check_marr_b4_death())
 
-    def test_check_marr_b4_div(self):
-        # Test check_marr_b4_div() function
-        test_case_02_1 = Gedcom("test_example_02_1")
-        test_case_02_2 = Gedcom("test_example_02_2")
-        test_case_02_3 = Gedcom("test_example_02_3")
-        test_case_02_4 = Gedcom("test_example_02_4")
-        self.assertTrue(test_case_02_1.check_marr_b4_div())
-        self.assertTrue(test_case_02_2.check_marr_b4_div())
-        self.assertFalse(test_case_02_3.check_marr_b4_div())
-        self.assertTrue(test_case_02_4.check_marr_b4_div())
-
-    def test_check_marr_b4_death(self):
-        # Test check_marr_b4_death() function
-        test_case_04_1 = Gedcom("test_example_04_1")
-        test_case_04_2 = Gedcom("test_example_04_2")
-        self.assertTrue(test_case_04_1.check_marr_b4_death())
-        self.assertFalse(test_case_04_2.check_marr_b4_death())
-
-    def test_check_div_b4_death(self):
-        # Test check_div_b4_death() function
-        test_case_06_1 = Gedcom("test_example_06_1")
-        test_case_06_2 = Gedcom("test_example_06_2")
-        self.assertTrue(test_case_06_1.check_div_b4_death())
-        self.assertFalse(test_case_06_2.check_div_b4_death())
 
 
 if __name__ == '__main__':
