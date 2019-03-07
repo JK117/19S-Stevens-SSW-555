@@ -30,7 +30,3 @@ Families:
 | @F4@ | 1991-06-12 |     NA     |   @I13@    |   Clark /Murphy/   |   @I5@  | Elizabeth /Williams/ |    ['@I14@', '@I15@']    |
 | @F6@ | 2015-04-06 |     NA     |    @I8@    | Steven /Williams/  |  @I16@  |     Carol /Gray/     |            []            |
 +------+------------+------------+------------+--------------------+---------+----------------------+--------------------------+
-Errors:
-ERROR: FAMILY: US02: @F1@: @I1@: Marriage date 1925-06-08 occurs before birthday 1930-09-05
-ERROR: FAMILY: US02: @F1@: @I2@: Marriage date 1925-06-08 occurs before birthday 1932-07-01
-ERROR: FAMILY: US04: @F2@: Divorce date 1980-06-22 occurs before marriage date 1982-05-15
