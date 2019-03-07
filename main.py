@@ -7,19 +7,17 @@ from gedcom import Gedcom
 
 
 if __name__ == '__main__':
-    test_case = Gedcom("")
+    test_case = Gedcom("example.ged")
     # url = input("Please input test GEDCOM file url (press ENTER to use default url [./example.ged]): ")
 
     # Project 02
-    # test_case.create_arrow_output()
-    # test_case.print_arrow_records()
+    # sprint_1_demo.create_arrow_output()
+    # sprint_1_demo.print_arrow_records()
 
     # Project 03 v1
-    # test_case.record_to_dict()
-    # test_case.print_table()
+    # sprint_1_demo.record_to_dict()
+    # sprint_1_demo.print_table()
 
     # Project 03 v2
-    # test_case.separate_line()
-    # test_case.create_indi_object()
-    # test_case.create_fam_object()
+    test_case.set_output_url("pj_03_output.txt")
     test_case.print_pretty_table()
