@@ -181,24 +181,24 @@ class Gedcom():
         for indi in self.individual_list:
             if 'Birthday' in indi.keys():
                 if indi["Birthday"] > today:
-                    error_msg = "ERROR: INDIVIDUAL : US01: " + indi['ID'] + ": Birthday " + \
-                                str(indi["Birthday"]) + " occurs before today : " + str(today)
+                    error_msg = "ERROR: INDIVIDUAL: US01: " + indi['ID'] + ": Birthday " + \
+                                str(indi["Birthday"]) + " occurs before today: " + str(today)
                     self.error_list.append(error_msg)
             if "Death" in indi.keys():
                 if indi["Death"] > today:
-                    error_msg = "ERROR: INDIVIDUAL : US01: " + indi['ID'] + ": Death date " + \
-                                str(indi["Death"]) + " occurs before today : " + str(today)
+                    error_msg = "ERROR: INDIVIDUAL: US01: " + indi['ID'] + ": Death date " + \
+                                str(indi["Death"]) + " occurs before today: " + str(today)
                     self.error_list.append(error_msg)
         for fami in self.family_list:
             if "Married" in fami.keys():
                 if fami["Married"] > today:
-                    error_msg = "ERROR: FAMILY : US01: " + fami['ID'] + ": Married Date " + \
-                                str(fami["Married"]) + " occurs before today : " + str(today)
+                    error_msg = "ERROR: FAMILY: US01: " + fami['ID'] + ": Married Date " + \
+                                str(fami["Married"]) + " occurs before today: " + str(today)
                     self.error_list.append(error_msg)
             if "Divorced" in fami.keys():
                 if fami["Divorced"] > today:
-                    error_msg = "ERROR: FAMILY : US01: " + fami['ID'] + ": Divorced Date " + \
-                                str(fami["Divorced"]) + " occurs before today : " + str(today)
+                    error_msg = "ERROR: FAMILY: US01: " + fami['ID'] + ": Divorced Date " + \
+                                str(fami["Divorced"]) + " occurs before today: " + str(today)
                     self.error_list.append(error_msg)
         # return True
 
@@ -281,8 +281,8 @@ class Gedcom():
                     if indi["ID"] == fami["Husband ID"] or indi["ID"] == fami["Wife ID"]:
                         if "Divorced" in fami.keys():
                             if indi["Death"] < fami["Divorced"]:
-                                error_msg = "ERROR: FAMILY : US06: " + fami['ID'] + ": Divorced date " + \
-                                            str(fami["Divorced"]) + " occurs before " + indi["ID"] + " Death date : " + str(indi["Death"])
+                                error_msg = "ERROR: FAMILY: US06: " + fami['ID'] + ": Divorced date " + \
+                                            str(fami["Divorced"]) + " occurs before " + indi["ID"] + " Death date: " + str(indi["Death"])
                                 self.error_list.append(error_msg)
         # return True
 
