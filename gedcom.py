@@ -222,8 +222,11 @@ class Gedcom():
         for individual in self.individual_list:
             if 'Death' in individual.keys():
                 if individual['Birthday'] > individual['Death']:
-                    return False
-        return True
+                    error_msg = "ERROR: INDIVIDUAL: US03: " + individual['ID'] + ": Death date " + \
+                                str(individual['Death']) + " occurs before Birthday " + str(individual['Birthday'])
+                    self.error_list.append(error_msg)
+        #             return False
+        # return True
 
     # US04
     def check_marr_b4_div(self):
@@ -247,12 +250,20 @@ class Gedcom():
                     if individual['ID'] == husband_id:
                         husband_death = individual['Death']
                         if husband_death < marr_date:
-                            return False
+                            error_msg = "ERROR: FAMILY: US03: " + family[
+                                'ID'] + ": " + husband_id + ": Death date " + \
+                                        str(husband_death) + " occurs before marriage date " + str(marr_date)
+                            self.error_list.append(error_msg)
+                            # return False
                     if individual['ID'] == wife_id:
                         wife_death = individual['Death']
                         if wife_death < marr_date:
-                            return False
-        return True
+                            error_msg = "ERROR: FAMILY: US03: " + family[
+                                'ID'] + ": " + wife_id + ": Death date " + \
+                                        str(wife_death) + " occurs before marriage date " + str(marr_date)
+                            self.error_list.append(error_msg)
+                            # return False
+        # return True
 
     # US06
     def check_div_b4_death(self):
