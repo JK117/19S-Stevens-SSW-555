@@ -181,18 +181,26 @@ class Gedcom():
         for indi in self.individual_list:
             if 'Birthday' in indi.keys():
                 if indi["Birthday"] > today:
-                    return False
+                    error_msg = "ERROR: INDIVIDUAL : US01: " + indi['ID'] + ": Birthday " + \
+                                indi["Birthday"] + " occurs before today : " + today
+                    self.error_list.append(error_msg)
             if "Death" in indi.keys():
                 if indi["Death"] > today:
-                    return False
+                    error_msg = "ERROR: INDIVIDUAL : US01: " + indi['ID'] + ": Death date " + \
+                                indi["Death"] + " occurs before today : " + today
+                    self.error_list.append(error_msg)
         for fami in self.family_list:
             if "Married" in fami.keys():
                 if fami["Married"] > today:
-                    return False
+                    error_msg = "ERROR: FAMILY : US01: " + fami['ID'] + ": Married Date " + \
+                                fami["Married"] + " occurs before today : " + today
+                    self.error_list.append(error_msg)
             if "Divorced" in fami.keys():
                 if fami["Divorced"] > today:
-                    return False
-        return True
+                    error_msg = "ERROR: FAMILY : US01: " + fami['ID'] + ": Divorced Date " + \
+                                fami["Divorced"] + " occurs before today : " + today
+                    self.error_list.append(error_msg)
+        # return True
 
     # US02
     def check_birth_b4_marr(self):
@@ -273,12 +281,14 @@ class Gedcom():
                     if indi["ID"] == fami["Husband ID"] or indi["ID"] == fami["Wife ID"]:
                         if "Divorced" in fami.keys():
                             if indi["Death"] < fami["Divorced"]:
-                                return False
-        return True
+                                error_msg = "ERROR: FAMILY : US06: " + fami['ID'] + ": Divorced date " + \
+                                            fami["Divorced"] + " occurs before " + indi["ID"] + " Death date : " + indi["Death"]
+                                self.error_list.append(error_msg)
+        # return True
 
     def check_all_objects(self):
         # US01
-        # self.check_date_b4_current()
+        self.check_date_b4_current()
         # US02
         self.check_birth_b4_marr()
         # US03
@@ -288,7 +298,7 @@ class Gedcom():
         # US05
         # self.check_marr_b4_death()
         # US06
-        # self.check_div_b4_death()
+        self.check_div_b4_death()
 
         output_stream = open(self.output_url, "a")
         output_stream.write("Errors:\n")
