@@ -8,7 +8,7 @@ def convert_date(date_arr):
 
 
 class Gedcom():
-    def __init__(self):
+    def __init__(self, input_url):
         self.line_list = []
         self.record_list = []
         self.output_list = []
@@ -17,6 +17,10 @@ class Gedcom():
         self.tier_0_tag = ['HEAD', 'TRLR', 'NOTE']
         self.tier_1_tag = ['NAME', 'SEX', 'BIRT', 'DEAT', 'FAMC', 'FAMS', 'MARR', 'HUSB', 'WIFE', 'CHIL', 'DIV']
         self.tier_2_tag = ['DATE']
+        self.load_file(input_url)
+        self.separate_line()
+        self.create_indi_object()
+        self.create_fam_object()
 
     # Load designated text file by line
     # Store into self.line_list
@@ -260,22 +264,80 @@ class Gedcom():
         output.close()
 
     def check_date_b4_current(self):
-        print("HL")
+        today = datetime.today().date()
+        for indi in self.individual_list:
+            if 'Birthday' in indi.keys():
+                if indi["Birthday"] > today:
+                    return False
+            if "Death" in indi.keys():
+                if indi["Death"] > today:
+                    return False
+        for fami in self.family_list:
+            if "Married" in fami.keys():
+                if fami["Married"] > today:
+                    return False
+            if "Divorced" in fami.keys():
+                if fami["Divorced"] > today:
+                    return False
+        return True
 
     def check_birth_b4_marr(self):
-        print("JF")
+        for family in self.family_list:
+            husband_id = family['Husband ID']
+            wife_id = family['Wife ID']
+            marr_date = family['Married']
+            for individual in self.individual_list:
+                if individual['ID'] == husband_id:
+                    husband_birth = individual['Birthday']
+                    if husband_birth > marr_date:
+                        return False
+                if individual['ID'] == wife_id:
+                    wife_birth = individual['Birthday']
+                    if wife_birth > marr_date:
+                        return False
+        return True
 
     def check_birth_b4_death(self):
-        print("SJ")
+        for individual in self.individual_list:
+            if 'Death' in individual.keys():
+                if individual['Birthday'] > individual['Death']:
+                    return False
+        return True
 
     def check_marr_b4_div(self):
-        print("JF")
+        for family in self.family_list:
+            if 'Divorced' in family.keys():
+                if family['Divorced'] < family['Married']:
+                    return False
+        return True
 
     def check_marr_b4_death(self):
-        print("SJ")
+        for family in self.family_list:
+            husband_id = family['Husband ID']
+            wife_id = family['Wife ID']
+            marr_date = family['Married']
+            for individual in self.individual_list:
+                if 'Death' in individual.keys():
+                    if individual['ID'] == husband_id:
+                        husband_death = individual['Death']
+                        if husband_death < marr_date:
+                            return False
+                    if individual['ID'] == wife_id:
+                        wife_death = individual['Death']
+                        if wife_death < marr_date:
+                            return False
+        return True
 
     def check_div_b4_death(self):
-        print("HL")
+        for indi in self.individual_list:
+            if "Death" in indi.keys():
+                for fami in self.family_list:
+                    if indi["ID"] == fami["Husband ID"] or indi["ID"] == fami["Wife ID"]:
+                        if "Divorced" in fami.keys():
+                            if indi["Death"] < fami["Divorced"]:
+                                return False
+        return True
+
 
     def create_arrow_output(self):
         for i in range(len(self.line_list)):
