@@ -1,5 +1,6 @@
 import prettytable as pt
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 def convert_date(date_arr):
@@ -76,10 +77,14 @@ class Gedcom():
                     if self.record_list[idx][0] == '1' and self.record_list[idx][1] == 'FAMS':
                         indi_obj['Spouse'] = self.record_list[idx][2]
                     if 'Birthday' in indi_obj.keys() and 'Death' not in indi_obj.keys():
-                        indi_obj['Age'] = today.year - indi_obj['Birthday'].year - ((today.month, today.day) < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
+                        indi_obj['Age'] = today.year - indi_obj['Birthday'].year \
+                                          - ((today.month, today.day)
+                                             < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
                         indi_obj['Alive'] = True
                     if 'Birthday' in indi_obj.keys() and 'Death' in indi_obj.keys():
-                        indi_obj['Age'] = indi_obj['Death'].year - indi_obj['Birthday'].year - ((indi_obj['Death'].month, indi_obj['Death'].day) < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
+                        indi_obj['Age'] = indi_obj['Death'].year - indi_obj['Birthday'].year \
+                                          - ((indi_obj['Death'].month, indi_obj['Death'].day)
+                                             < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
                         indi_obj['Alive'] = False
                     idx += 1
                 self.individual_list.append(indi_obj)
@@ -142,8 +147,8 @@ class Gedcom():
                 table_spouse = individual['Spouse']
             else:
                 table_spouse = 'NA'
-            indi_pt.add_row([individual['ID'], individual['Name'], individual["Gender"], str(individual['Birthday']), individual['Age'], individual['Alive'],
-                             table_death, table_child, table_spouse])
+            indi_pt.add_row([individual['ID'], individual['Name'], individual["Gender"], str(individual['Birthday']),
+                             individual['Age'], individual['Alive'], table_death, table_child, table_spouse])
         print(indi_pt)
 
         fam_pt = pt.PrettyTable()
@@ -286,7 +291,84 @@ class Gedcom():
                                 self.error_list.append(error_msg)
         # return True
 
-    def check_all_objects(self):
+    # US07 by HL
+    # Death should be less than 150 years after birth for dead people,
+    # and current date should be less than 150 years after birth for all living people
+    # def check_less_then_150_years_old(self):
+
+    # US08 by HL
+    # Children should be born after marriage of parents,
+    # and not more than 9 months after their divorce
+    # def check_birth_b4_marriage_of_parents(self):
+
+    # US09 by JK
+    # Child should be born before death of mother,
+    # and before 9 months after death of father
+    def check_birth_b4_death_of_parents(self):
+        for family in self.family_list:
+            if family["Children"] is not []:
+                for child_id in family["Children"]:
+                    child_birthday = None
+                    mother_death = None
+                    father_death = None
+                    for individual in self.individual_list:
+                        if individual["ID"] == child_id:
+                            child_birthday = individual["Birthday"]
+                        if individual["ID"] == family["Wife ID"]:
+                            if "Death" in individual.keys():
+                                mother_death = individual["Death"]
+                        if individual["ID"] == family["Husband ID"]:
+                            if "Death" in individual.keys():
+                                father_death = individual["Death"]
+
+                    if mother_death is not None and child_birthday > mother_death:
+                        error_msg = "ERROR: US09: FAMILY: " + family['ID'] + ": Child: " + child_id + ": Birthday: " + \
+                                    str(child_birthday) + ": After mother: " + family["Wife ID"] + \
+                                    ": Death: " + str(mother_death)
+                        self.error_list.append(error_msg)
+                    if father_death is not None and child_birthday > (father_death + relativedelta(months=9)):
+                        error_msg = "ERROR: US09: FAMILY: " + family['ID'] + ": Child: " + child_id + ": Birthday: " + \
+                                    str(child_birthday) + ": After father: " + family["Husband ID"] + \
+                                    ": Death: " + str(father_death) + ": 9 months later"
+                        self.error_list.append(error_msg)
+
+    # US10 by JK
+    # Marriage should be at least 14 years after birth of both spouses (parents must be at least 14 years old)
+    def check_marriage_after_14(self):
+        for family in self.family_list:
+            marriage_date = family["Married"]
+            husband_married_age = None
+            wife_married_age = None
+            for individual in self.individual_list:
+                if individual["ID"] == family["Husband ID"]:
+                    husband_married_age = marriage_date.year - individual['Birthday'].year \
+                                          - ((marriage_date.month, marriage_date.day)
+                                             < (individual['Birthday'].month, individual['Birthday'].day))
+                if individual["ID"] == family["Wife ID"]:
+                    wife_married_age = marriage_date.year - individual['Birthday'].year \
+                                       - ((marriage_date.month, marriage_date.day)
+                                          < (individual['Birthday'].month, individual['Birthday'].day))
+
+            if husband_married_age < 14:
+                error_msg = "ANOMALY: US10: FAMILY: " + family["ID"] + ": Husband: " + family["Husband ID"] + \
+                            ": Married at age: " + str(husband_married_age) + ": On: " + str(marriage_date)
+                self.error_list.append(error_msg)
+
+            if wife_married_age < 14:
+                error_msg = "ANOMALY: US10: FAMILY: " + family["ID"] + ": Wife: " + family["Wife ID"] + \
+                            ": Married at age: " + str(wife_married_age) + ": On: " + str(marriage_date)
+                self.error_list.append(error_msg)
+
+    # US11 by SJ
+    # Marriage should not occur during marriage to another spouse
+    # def check_no_bigamy(self):
+
+    # US12 by SJ
+    # Mother should be less than 60 years older than her children,
+    # and father should be less than 80 years older than his children
+    # def check_parents_not_too_old(self):
+
+    def check_all_objects_sprint_1(self):
         # US01
         self.check_date_b4_current()
         # US02
@@ -299,6 +381,27 @@ class Gedcom():
         self.check_marr_b4_death()
         # US06
         self.check_div_b4_death()
+
+        output_stream = open(self.output_url, "a")
+        output_stream.write("Errors:\n")
+        for error in self.error_list:
+            print(error)
+            output_stream.write(error + '\n')
+        output_stream.close()
+
+    def check_all_objects_sprint_2(self):
+        # US07
+        # self.check_less_then_150_years_old()
+        # US08
+        # self.check_birth_b4_marriage_of_parents()
+        # US09
+        self.check_birth_b4_death_of_parents()
+        # US10
+        # self.check_Marriage_after_14()
+        # US11
+        # self.check_no_bigamy()
+        # US12
+        # self.check_parents_not_too_old()
 
         output_stream = open(self.output_url, "a")
         output_stream.write("Errors:\n")

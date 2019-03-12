@@ -1,0 +1,7 @@
+test_check_birth_b4_death_of_parents (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
+test_check_marriage_after_14 (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+OK

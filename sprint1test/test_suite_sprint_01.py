@@ -1,5 +1,5 @@
 import unittest
-from test.test_gedcom import TestCheckFunctions
+from sprint1test.test_gedcom_sprint_01 import TestCheckFunctions
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

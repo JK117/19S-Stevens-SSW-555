@@ -71,6 +71,5 @@ class TestCheckFunctions(unittest.TestCase):
     #     self.assertFalse(test_case_04_2.check_marr_b4_death())
 
 
-
 if __name__ == '__main__':
     unittest.main(verbosity=2)
