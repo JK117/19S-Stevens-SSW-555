@@ -7,6 +7,6 @@ if __name__ == '__main__':
              TestCheckFunctionsSprint02("test_check_marriage_after_14")]
     suite.addTests(tests)
 
-    with open('Sprint2_Unit_Test_Report.txt', 'w') as f:
+    with open('Sprint2_Unit_Test_Report.txt', 'a') as f:
         runner = unittest.TextTestRunner(stream=f, verbosity=2)
         runner.run(suite)
