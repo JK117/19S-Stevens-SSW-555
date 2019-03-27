@@ -28,10 +28,33 @@ class TestCheckFunctionsSprint02(unittest.TestCase):
         test_case_10_2_expected = ["ANOMALY: US10: FAMILY: @F1@: Wife: @I2@: Married at age: 12: On: 1945-06-08"]
         self.assertEqual(test_case_10_2_expected, test_case_10_2.error_list)
 
+    # US22
+    def test_check_unique_id(self):
+        test_case_22_1 = Gedcom("test_example_22_1")
+        test_case_22_1.check_unique_id()
+        test_case_22_1_expected = []
+        self.assertEqual(test_case_22_1_expected, test_case_22_1.error_list)
+
+        test_case_22_2 = Gedcom("test_example_22_2")
+        test_case_22_2.check_unique_id()
+        test_case_22_2_expected = ["ANOMALY: US22: FAMILY: @F1@ is not unique."
+                                   "ANOMALY: US22: INDIVIDUAL: @I1@ is not unique."]
+        self.assertEqual(test_case_22_2_expected, test_case_22_2.error_list)
+
+    # US12
+    def test_check_parents_not_too_old(self):
+        test_case_12_1 = Gedcom("test_example_12_1")
+        test_case_12_1.check_parents_not_too_old()
+        test_case_12_1_expected = []
+        self.assertEqual(test_case_12_1_expected, test_case_12_1.error_list)
+
+        test_case_12_2 = Gedcom("test_example_12_2")
+        test_case_12_2.check_unique_id()
+        test_case_12_2_expected = ["ERROR: US12: FAMILY: @F1@: Mother: @I2@ is more than 60 years older than her children: @I3@"
+                                   "ERROR: US12: FAMILY: @F1@: Father: @I1@ is more than 80 years older than his children: @I3@"]
+        self.assertEqual(test_case_12_2_expected, test_case_12_2.error_list)
+
 
 if __name__ == '__main__':
-    # unittest.main()
-    test_case_10_1 = Gedcom("test_example_12_1")
-    print(test_case_10_1.check_parents_not_too_old())
-
+    unittest.main()
 

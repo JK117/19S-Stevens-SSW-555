@@ -1,6 +1,6 @@
 import prettytable as pt
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
+# from dateutil.relativedelta import relativedelta
 
 
 def convert_date(date_arr):
@@ -360,11 +360,28 @@ class Gedcom():
                 self.error_list.append(error_msg)
 
     # US22 by SJ
-    # Marriage should not occur during marriage to another spouse
-    # def check_no_bigamy(self):
-    #     for family in self.family_list:
-    #         marriage_date = family["Married"]
-
+    # All individual IDs should be unique and all family IDs should be unique
+    def check_unique_id(self):
+        dict_family_id = {}
+        dict_individual_id = {}
+        for family in self.family_list:
+            if family["ID"] in dict_family_id:
+                dict_family_id[family["ID"]] += 1
+            else:
+                dict_family_id[family["ID"]] = 1
+        for fam_id in dict_family_id.keys():
+            if dict_family_id[fam_id] > 1:
+                error_msg = "ANOMALY: US22: FAMILY: " + fam_id + " is not unique."
+                self.error_list.append(error_msg)
+        for individual in self.individual_list:
+            if individual["ID"] in dict_individual_id:
+                dict_individual_id[individual["ID"]] += 1
+            else:
+                dict_individual_id[individual["ID"]] = 1
+        for ind_id in dict_individual_id.keys():
+            if dict_individual_id[ind_id] > 1:
+                error_msg = "ANOMALY: US22: INDIVIDUAL: " + ind_id + " is not unique."
+                self.error_list.append(error_msg)
 
     # US12 by SJ
     # Mother should be less than 60 years older than her children,
@@ -423,8 +440,8 @@ class Gedcom():
         self.check_birth_b4_death_of_parents()
         # US10
         # self.check_Marriage_after_14()
-        # US11
-        # self.check_no_bigamy()
+        # US22
+        self.check_unique_id()
         # US12
         self.check_parents_not_too_old()
 
