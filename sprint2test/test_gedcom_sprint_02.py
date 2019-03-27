@@ -30,4 +30,8 @@ class TestCheckFunctionsSprint02(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    # unittest.main()
+    test_case_10_1 = Gedcom("test_example_12_1")
+    print(test_case_10_1.check_parents_not_too_old())
+
+

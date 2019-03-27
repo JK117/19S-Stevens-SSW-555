@@ -1,0 +1,38 @@
+0 HEAD
+0 NOTE US12 check_parents_not_too_old
+0 NOTE Mother is more than 60 years older than her children
+0 NOTE and father is more than 80 years older than his children
+
+0 @I1@ INDI
+1 NAME Jackson /Williams/
+1 SEX M
+1 BIRT
+2 DATE 5 SEP 1930
+1 DEAT Y
+2 DATE 1 JAN 2008
+1 FAMS @F1@
+
+0 @I2@ INDI
+1 NAME Diana /Smith/
+1 SEX F
+1 BIRT
+2 DATE 1 JUL 1932
+1 DEAT Y
+2 DATE 5 MAY 2015
+1 FAMS @F1@
+
+0 @I3@ INDI
+1 NAME John /Williams/
+1 SEX M
+1 BIRT
+2 DATE 13 FEB 2013
+1 FAMC @F1@
+
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+1 MARR
+2 DATE 8 JUN 1955
+
+0 TRLR

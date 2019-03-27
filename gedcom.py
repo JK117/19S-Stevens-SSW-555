@@ -359,14 +359,39 @@ class Gedcom():
                             ": Married at age: " + str(wife_married_age) + ": On: " + str(marriage_date)
                 self.error_list.append(error_msg)
 
-    # US11 by SJ
+    # US22 by SJ
     # Marriage should not occur during marriage to another spouse
     # def check_no_bigamy(self):
+    #     for family in self.family_list:
+    #         marriage_date = family["Married"]
+
 
     # US12 by SJ
     # Mother should be less than 60 years older than her children,
     # and father should be less than 80 years older than his children
-    # def check_parents_not_too_old(self):
+    def check_parents_not_too_old(self):
+        for family in self.family_list:
+            if family["Children"] is not []:
+                for child_id in family["Children"]:
+                    child_birthday = None
+                    mother_birthday = None
+                    father_birthday = None
+                    for individual in self.individual_list:
+                        if individual["ID"] == child_id:
+                            child_birthday = individual["Birthday"]
+                        if individual["ID"] == family["Wife ID"]:
+                            mother_birthday = individual["Birthday"]
+                        if individual["ID"] == family["Husband ID"]:
+                            father_birthday = individual["Birthday"]
+
+                    if mother_birthday > child_birthday + relativedelta(year=60):
+                        error_msg = "ERROR: US12: FAMILY: " + family['ID'] + ": Mother: " + family["Wife ID"] + \
+                                    " is more than 60 years older than her children: " + child_id
+                        self.error_list.append(error_msg)
+                    if father_birthday > child_birthday + relativedelta(year=80):
+                        error_msg = "ERROR: US12: FAMILY: " + family['ID'] + ": Father: " + family["Husband ID"] + \
+                                    " is more than 80 years older than his children: " + child_id
+                        self.error_list.append(error_msg)
 
     def check_all_objects_sprint_1(self):
         # US01
@@ -401,7 +426,7 @@ class Gedcom():
         # US11
         # self.check_no_bigamy()
         # US12
-        # self.check_parents_not_too_old()
+        self.check_parents_not_too_old()
 
         output_stream = open(self.output_url, "a")
         output_stream.write("Errors:\n")
