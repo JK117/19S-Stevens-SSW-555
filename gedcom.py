@@ -1,6 +1,6 @@
 import prettytable as pt
 from datetime import datetime
-# from dateutil.relativedelta import relativedelta
+from dateutil.relativedelta import relativedelta
 
 
 def convert_date(date_arr):
@@ -390,22 +390,22 @@ class Gedcom():
         for family in self.family_list:
             if family["Children"] is not []:
                 for child_id in family["Children"]:
-                    child_birthday = None
-                    mother_birthday = None
-                    father_birthday = None
+                    child_age = None
+                    mother_age = None
+                    father_age = None
                     for individual in self.individual_list:
                         if individual["ID"] == child_id:
-                            child_birthday = individual["Birthday"]
+                            child_age = individual["Age"]
                         if individual["ID"] == family["Wife ID"]:
-                            mother_birthday = individual["Birthday"]
+                            mother_age = individual["Age"]
                         if individual["ID"] == family["Husband ID"]:
-                            father_birthday = individual["Birthday"]
+                            father_age = individual["Age"]
 
-                    if mother_birthday > child_birthday + relativedelta(year=60):
+                    if mother_age > child_age + 60:
                         error_msg = "ERROR: US12: FAMILY: " + family['ID'] + ": Mother: " + family["Wife ID"] + \
                                     " is more than 60 years older than her children: " + child_id
                         self.error_list.append(error_msg)
-                    if father_birthday > child_birthday + relativedelta(year=80):
+                    if father_age > child_age + 80:
                         error_msg = "ERROR: US12: FAMILY: " + family['ID'] + ": Father: " + family["Husband ID"] + \
                                     " is more than 80 years older than his children: " + child_id
                         self.error_list.append(error_msg)
