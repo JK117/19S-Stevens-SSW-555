@@ -452,13 +452,13 @@ class Gedcom():
 
     def check_all_objects_sprint_2(self):
         # US07
-        # self.check_less_then_150_years_old()
+        self.check_less_then_150_years_old()
         # US08
-        # self.check_birth_b4_marriage_of_parents()
+        self.check_birth_b4_marriage_of_parents()
         # US09
         self.check_birth_b4_death_of_parents()
         # US10
-        # self.check_Marriage_after_14()
+        self.check_marriage_after_14()
         # US22
         self.check_unique_id()
         # US12
