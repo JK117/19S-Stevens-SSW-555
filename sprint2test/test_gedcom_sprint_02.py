@@ -3,6 +3,32 @@ from gedcom import Gedcom
 
 
 class TestCheckFunctionsSprint02(unittest.TestCase):
+    # US07
+    def test_check_less_then_150_years_old(self):
+        test_case_07_1 = Gedcom("test_example_07_1")
+        test_case_07_1.check_less_then_150_years_old()
+        test_case_07_1_expected = ["ERROR: US07: INDIVIDUAL: " + "@I3@" + " is more than or equals to 150 years old."]
+        self.assertEqual(test_case_07_1_expected, test_case_07_1.error_list)
+
+        test_case_07_2 = Gedcom("test_example_07_2")
+        test_case_07_2.check_less_then_150_years_old()
+        test_case_07_2_expected = []
+        self.assertEqual(test_case_07_2_expected, test_case_07_2.error_list)
+
+    # US08
+    def test_check_birth_b4_marriage_of_parents(self):
+        test_case_08_1 = Gedcom("test_example_08_1")
+        test_case_08_1.check_birth_b4_marriage_of_parents()
+        test_case_08_1_expected = ["ERROR: US08: FAMILY: " + "@F2@" + ": Child: " + "@I8@" +
+                                   ": Birthday: " + "1945-04-16" +
+                                   ": Before his/her parents' Married: " + "1982-05-15"]
+        self.assertEqual(test_case_08_1_expected, test_case_08_1.error_list)
+
+        test_case_08_2 = Gedcom("test_example_08_2")
+        test_case_08_2.check_birth_b4_marriage_of_parents()
+        test_case_08_2_expected = []
+        self.assertEqual(test_case_08_2_expected, test_case_08_2.error_list)
+
     # US09
     def test_check_birth_b4_death_of_parents(self):
         test_case_09_1 = Gedcom("test_example_09_1")

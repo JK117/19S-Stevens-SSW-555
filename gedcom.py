@@ -294,12 +294,31 @@ class Gedcom():
     # US07 by HL
     # Death should be less than 150 years after birth for dead people,
     # and current date should be less than 150 years after birth for all living people
-    # def check_less_then_150_years_old(self):
+    def check_less_then_150_years_old(self):
+        for individual in self.individual_list:
+            if individual['Age'] >= 150:
+                error_msg = "ERROR: US07: INDIVIDUAL: " + individual[
+                    'ID'] + " is more than or equals to 150 years old."
+                self.error_list.append(error_msg)
 
     # US08 by HL
     # Children should be born after marriage of parents,
     # and not more than 9 months after their divorce
-    # def check_birth_b4_marriage_of_parents(self):
+    def check_birth_b4_marriage_of_parents(self):
+        for family in self.family_list:
+            if family["Children"] is not []:
+                for child_id in family["Children"]:
+                    child_birthday = None
+                    parent_marriage_date = family["Married"]
+                    for individual in self.individual_list:
+                        if individual["ID"] == child_id:
+                            child_birthday = individual["Birthday"]
+
+                    if child_birthday <= parent_marriage_date:
+                        error_msg = "ERROR: US08: FAMILY: " + family['ID'] + ": Child: " + child_id + \
+                                    ": Birthday: " + str(child_birthday) + \
+                                    ": Before his/her parents' Married: " + str(parent_marriage_date)
+                        self.error_list.append(error_msg)
 
     # US09 by JK
     # Child should be born before death of mother,
