@@ -1,0 +1,56 @@
+0 HEAD
+0 NOTE US15 fewer_than_15_siblings
+0 NOTE There is no family has over 15 siblings
+
+0 @I1@ INDI
+1 NAME Jackson /Williams/
+1 SEX M
+1 BIRT
+2 DATE 5 SEP 1930
+1 DEAT Y
+2 DATE 1 JAN 2008
+1 FAMS @F1@
+
+0 @I2@ INDI
+1 NAME Diana /Smith/
+1 SEX F
+1 BIRT
+2 DATE 1 JUL 1932
+1 DEAT Y
+2 DATE 5 MAY 2015
+1 FAMS @F1@
+
+0 @I3@ INDI
+1 NAME John /Williams/
+1 SEX M
+1 BIRT
+2 DATE 13 FEB 1957
+1 FAMS @F2@
+1 FAMC @F1@
+
+0 @I4@ INDI
+1 NAME Jennifer /Williams/
+1 SEX F
+1 BIRT
+2 DATE 10 SEP 1962
+1 FAMS @F3@
+1 FAMC @F1@
+
+0 @I5@ INDI
+1 NAME Elizabeth /Williams/
+1 SEX F
+1 BIRT
+2 DATE 14 MAY 1965
+1 FAMS @F4@
+1 FAMC @F1@
+
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+1 CHIL @I4@
+1 CHIL @I5@
+1 MARR
+2 DATE 8 JUN 1955
+
+0 TRLR
