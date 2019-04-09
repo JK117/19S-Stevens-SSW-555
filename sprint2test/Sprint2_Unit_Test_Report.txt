@@ -1,11 +1,35 @@
 test_check_less_then_150_years_old (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
 test_check_birth_b4_marriage_of_parents (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
-test_check_birth_b4_death_of_parents (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
-test_check_marriage_after_14 (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
+test_check_birth_b4_death_of_parents (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ERROR
+test_check_marriage_after_14 (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ERROR
 test_check_parents_not_too_old (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
 test_check_unique_id (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
 
+======================================================================
+ERROR: test_check_birth_b4_death_of_parents (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02)
 ----------------------------------------------------------------------
-Ran 6 tests in 0.009s
+Traceback (most recent call last):
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/sprint2test/test_gedcom_sprint_02.py", line 34, in test_check_birth_b4_death_of_parents
+    test_case_09_1 = Gedcom("test_example_15_1")
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 23, in __init__
+    self.load_file(input_url)
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 33, in load_file
+    input_stream = open(input_url, "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'test_example_15_1'
 
-OK
+======================================================================
+ERROR: test_check_marriage_after_14 (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/sprint2test/test_gedcom_sprint_02.py", line 47, in test_check_marriage_after_14
+    test_case_10_1 = Gedcom("test_example_16_1")
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 23, in __init__
+    self.load_file(input_url)
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 33, in load_file
+    input_stream = open(input_url, "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'test_example_16_1'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.007s
+
+FAILED (errors=2)

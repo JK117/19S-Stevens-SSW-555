@@ -436,10 +436,31 @@ class Gedcom():
     # def multiple_births_less_than_5(self):
 
     # US15 by JF
-    # def fewer_than_15_siblings(self):
+    def fewer_than_15_siblings(self):
+        for family in self.family_list:
+            sibling_num = len(family['Children'])
+            if sibling_num > 15:
+                error_msg = "ANOMALY: US15: FAMILY: " + family["ID"] + " has: " + \
+                            str(sibling_num) + " siblings, more than 15"
+                self.error_list.append(error_msg)
 
     # US16 by JF
-    # def male_last_names(self):
+    def male_last_names(self):
+        for family in self.family_list:
+            husband_id = family['Husband ID']
+            for individual in self.individual_list:
+                if individual['ID'] == husband_id:
+                    name = individual['Name'].split()
+                    last_name = name[-1]
+                    for child_id in family['Children']:
+                        for child_indi in self.individual_list:
+                            if child_id == child_indi['ID']:
+                                if child_indi['Gender'] == 'M':
+                                    child_name = child_indi['Name'].split()
+                                    if child_name[-1] != last_name:
+                                        error_msg = "ANOMALY: US10: FAMILY: " + family["ID"] + ": Male member: " + \
+                                                    child_indi['Name'] + ": has different last names"
+                                        self.error_list.append(error_msg)
 
     # US17 by SJ
     # def no_marriages_to_descendants(self):
