@@ -7,8 +7,8 @@ if __name__ == '__main__':
              TestCheckFunctionsSprint03("test_multiple_births_less_than_5"),
              TestCheckFunctionsSprint03("test_fewer_than_15_siblings"),
              TestCheckFunctionsSprint03("test_male_last_names"),
-             TestCheckFunctionsSprint03("test_check_parents_not_too_old"),
-             TestCheckFunctionsSprint03("test_check_unique_id")]
+             TestCheckFunctionsSprint03("test_check_no_marriages_to_descendants"),
+             TestCheckFunctionsSprint03("test_check_siblings_should_not_marry")]
     suite.addTests(tests)
 
     with open('Sprint3_Unit_Test_Report.txt', 'w') as f:

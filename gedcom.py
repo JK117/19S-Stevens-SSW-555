@@ -579,14 +579,14 @@ class Gedcom():
         output_stream.close()
 
     def check_all_objects_sprint_3(self):
-        # # US13
-        # self.check_less_then_150_years_old()
-        # # US14
-        # self.check_birth_b4_marriage_of_parents()
-        # # US15
-        # self.check_birth_b4_death_of_parents()
-        # # US16
-        # self.check_marriage_after_14()
+        # US13
+        self.siblings_spacing()
+        # US14
+        self.multiple_births_less_than_5()
+        # US15
+        self.fewer_than_15_siblings()
+        # US16
+        self.male_last_names()
         # US17
         self.check_no_marriages_to_descendants()
         # US18
