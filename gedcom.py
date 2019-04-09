@@ -507,8 +507,6 @@ class Gedcom():
 
     # US17 by SJ
     def check_no_marriages_to_descendants(self):
-        # print(self.family_list)
-        # print(self.individual_list)
         for family1 in self.family_list:
             husband_id1 = family1["Husband ID"]
             wife_id1 = family1["Wife ID"]
