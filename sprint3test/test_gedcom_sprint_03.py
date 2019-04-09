@@ -2,7 +2,7 @@ import unittest
 from gedcom import Gedcom
 
 
-class TestCheckFunctionsSprint02(unittest.TestCase):
+class TestCheckFunctionsSprint03(unittest.TestCase):
     # US15
     def test_fewer_than_15_siblings(self):
         test_case_15_1 = Gedcom("test_example_15_1")
