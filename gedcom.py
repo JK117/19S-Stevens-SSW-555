@@ -501,7 +501,7 @@ class Gedcom():
                                 if child_indi['Gender'] == 'M':
                                     child_name = child_indi['Name'].split()
                                     if child_name[-1] != last_name:
-                                        error_msg = "ANOMALY: US10: FAMILY: " + family["ID"] + ": Male member: " + \
+                                        error_msg = "ANOMALY: US16: FAMILY: " + family["ID"] + ": Male member: " + \
                                                     child_indi['Name'] + ": has different last names"
                                         self.error_list.append(error_msg)
 

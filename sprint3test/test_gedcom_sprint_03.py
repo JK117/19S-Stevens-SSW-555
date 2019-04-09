@@ -48,7 +48,7 @@ class TestCheckFunctionsSprint03(unittest.TestCase):
 
         test_case_16_2 = Gedcom("test_example_16_2")
         test_case_16_2.male_last_names()
-        test_case_16_2_expected = ["ANOMALY: US10: FAMILY: @F1@: Male member: Elizabeth /Miller/: has different last names"]
+        test_case_16_2_expected = ["ANOMALY: US16: FAMILY: @F1@: Male member: Elizabeth /Miller/: has different last names"]
         self.assertEqual(test_case_16_2_expected, test_case_16_2.error_list)
 
     # US17
