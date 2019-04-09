@@ -1,5 +1,6 @@
 import prettytable as pt
 from datetime import datetime
+from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 
 
@@ -430,11 +431,66 @@ class Gedcom():
                         self.error_list.append(error_msg)
 
     # US13 by HL
-    # def siblings_spacing(self):
+    def siblings_spacing(self):
+        timedelta_temp1 = timedelta(seconds=60, minutes=0, hours=0 )
+        timedelta_temp2 = timedelta(seconds=60, minutes=59, hours=5759)
+        for family in self.family_list:
+            if len(family['Children']) >= 2:
+                # print(len(family['Children']))
+                for index, sib_item in enumerate(family['Children']):
+                    # print(index, sib_item)
+                    # print(family['Children'][index])
+                    # if index == len(family['Children']) - 1:
+                    #     break
+                    for individual in self.individual_list:
+                        if individual["ID"] == family['Children'][index]:
+                            birthday1 = individual["Birthday"]
+                            # print(birthday1)
+                    for index_more_than_above in range(index+1, len(family['Children'])):
+                        for individual2 in self.individual_list:
+                            birthday2 = None
+                            if individual2["ID"] == family['Children'][index_more_than_above]:
+                                birthday2 = individual2["Birthday"]
+                                # print(birthday2,family['Children'][index_more_than_above], birthday1,family['Children'][index])
+                            if birthday2 is not None:
+                                if birthday2 > birthday1:
+                                    if timedelta_temp2 > birthday2 - birthday1 >= timedelta_temp1:
+                                        error_msg = "ERROR: US13: Siblings: " + \
+                                                    family['Children'][index_more_than_above] + " and " \
+                                                    + family['Children'][index] + "s' birthdays are not more than 8 " \
+                                                    "months apart or less than 2 days apart."
+                                        self.error_list.append(error_msg)
+                                        # print(error_msg)
+                                else:
+                                    if timedelta_temp2 > birthday2 - birthday1 >= timedelta_temp1:
+                                        error_msg = "ERROR: US13: Siblings: " + \
+                                                    family['Children'][index_more_than_above] + " and " \
+                                                    + family['Children'][index] + "s' birthdays are not more than 8 " \
+                                                    "months apart or less than 2 days apart."
+                                # print(error_msg)
+        # print(self.error_list)
 
     # US14 by HL
-    # def multiple_births_less_than_5(self):
-
+    def multiple_births_less_than_5(self):
+        # print(self.family_list)
+        # print(self.individual_list)
+        for family in self.family_list:
+            # print(family['Children'])
+            if len(family['Children']) >= 5:
+                # print(family["ID"])
+                temp_birthday_dict = {}
+                for index, sib_item in enumerate(family['Children']):
+                    for individual in self.individual_list:
+                        if individual["ID"] == family['Children'][index]:
+                            if individual["Birthday"] not in temp_birthday_dict:
+                                temp_birthday_dict[individual["Birthday"]] = 1
+                            else:
+                                temp_birthday_dict[individual["Birthday"]] += 1
+                # print(temp_birthday_dict)
+                if max(temp_birthday_dict.values()) >= 5:
+                    error_msg = "ERROR: US14: 5 or more Siblings in family: " + family["ID"] + " have same birthdays."
+                    self.error_list.append(error_msg)
+        # print(self.error_list)
     # US15 by JF
     # def fewer_than_15_siblings(self):
 
@@ -522,3 +578,8 @@ class Gedcom():
         for i in range(len(self.line_list)):
             print('--> ' + self.line_list[i])
             print(self.output_list[i])
+
+# test_case_13_1 = Gedcom("sprint3test/test_example_13_1")
+# test_case_13_1.siblings_spacing()
+# test_case_14_1 = Gedcom("sprint3test/test_example_14_1")
+# test_case_14_1.multiple_births_less_than_5()
