@@ -429,6 +429,24 @@ class Gedcom():
                                     " is more than 80 years older than his children: " + child_id
                         self.error_list.append(error_msg)
 
+    # US13 by HL
+    # def siblings_spacing(self):
+
+    # US14 by HL
+    # def multiple_births_less_than_5(self):
+
+    # US15 by JF
+    # def fewer_than_15_siblings(self):
+
+    # US16 by JF
+    # def male_last_names(self):
+
+    # US17 by SJ
+    # def no_marriages_to_descendants(self):
+
+    # US18 by SJ
+    # def def siblings_should_not_marry(self):
+
     def check_all_objects_sprint_1(self):
         # US01
         self.check_date_b4_current()
