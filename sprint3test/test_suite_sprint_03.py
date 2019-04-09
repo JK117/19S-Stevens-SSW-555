@@ -3,8 +3,8 @@ from sprint3test.test_gedcom_sprint_03 import TestCheckFunctionsSprint03
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
-    tests = [TestCheckFunctionsSprint03("test_check_less_then_150_years_old"),
-             TestCheckFunctionsSprint03("test_check_birth_b4_marriage_of_parents"),
+    tests = [TestCheckFunctionsSprint03("test_siblings_spacing"),
+             TestCheckFunctionsSprint03("test_multiple_births_less_than_5"),
              TestCheckFunctionsSprint03("test_fewer_than_15_siblings"),
              TestCheckFunctionsSprint03("test_male_last_names"),
              TestCheckFunctionsSprint03("test_check_parents_not_too_old"),
