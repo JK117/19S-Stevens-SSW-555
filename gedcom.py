@@ -442,10 +442,37 @@ class Gedcom():
     # def male_last_names(self):
 
     # US17 by SJ
-    # def no_marriages_to_descendants(self):
+    def check_no_marriages_to_descendants(self):
+        # print(self.family_list)
+        # print(self.individual_list)
+        for family1 in self.family_list:
+            husband_id1 = family1["Husband ID"]
+            wife_id1 = family1["Wife ID"]
+            for family2 in self.family_list:
+                husband_id2 = family2["Husband ID"]
+                wife_id2 = family2["Wife ID"]
+                if family1 is not family2:
+                    if husband_id2 == husband_id1:
+                        if wife_id2 in family1["Children"]:
+                            error_msg = "ERROR: US17: FAMILY: " + family2['ID'] + ", there is marriage between " \
+                                                                                  "parents and descendants."
+                            self.error_list.append(error_msg)
+                    if wife_id2 == wife_id1:
+                        if husband_id2 in family1["Children"]:
+                            error_msg = "ERROR: US17: FAMILY: " + family2['ID'] + ", there is marriage between " \
+                                                                                  "parents and descendants."
+                            self.error_list.append(error_msg)
 
     # US18 by SJ
-    # def def siblings_should_not_marry(self):
+    def check_siblings_should_not_marry(self):
+        for family1 in self.family_list:
+            husband_id1 = family1["Husband ID"]
+            wife_id1 = family1["Wife ID"]
+            for family2 in self.family_list:
+                if husband_id1 in family2["Children"] and wife_id1 in family2["Children"]:
+                    error_msg = "ERROR: US18: FAMILY: " + family1['ID'] + ", there is marriage " \
+                                                                            "between siblings."
+                    self.error_list.append(error_msg)
 
     def check_all_objects_sprint_1(self):
         # US01
@@ -481,6 +508,27 @@ class Gedcom():
         self.check_unique_id()
         # US12
         self.check_parents_not_too_old()
+
+        output_stream = open(self.output_url, "a")
+        output_stream.write("Errors:\n")
+        for error in self.error_list:
+            print(error)
+            output_stream.write(error + '\n')
+        output_stream.close()
+
+    def check_all_objects_sprint_3(self):
+        # # US13
+        # self.check_less_then_150_years_old()
+        # # US14
+        # self.check_birth_b4_marriage_of_parents()
+        # # US15
+        # self.check_birth_b4_death_of_parents()
+        # # US16
+        # self.check_marriage_after_14()
+        # US17
+        self.check_no_marriages_to_descendants()
+        # US18
+        self.check_siblings_should_not_marry()
 
         output_stream = open(self.output_url, "a")
         output_stream.write("Errors:\n")
