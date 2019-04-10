@@ -41,6 +41,6 @@ ERROR: US13: Siblings: @I18@ and @I3@s' birthdays are not more than 8 months apa
 ERROR: US13: Siblings: @I19@ and @I3@s' birthdays are not more than 8 months apart or less than 2 days apart.
 ERROR: US14: 5 or more Siblings in family: @F1@ have same birthdays.
 ANOMALY: US15: FAMILY: @F1@ has: 18 siblings, more than 15
-ANOMALY: US10: FAMILY: @F4@: Male member: Daniel /Murphy/: has different last names
+ANOMALY: US16: FAMILY: @F4@: Male member: Daniel /Murphy/: has different last names
 ERROR: US17: FAMILY: @F2@, there is marriage between parents and descendants.
 ERROR: US18: FAMILY: @F4@, there is marriage between siblings.
