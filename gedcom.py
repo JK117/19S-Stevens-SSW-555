@@ -536,6 +536,25 @@ class Gedcom():
                                                                             "between siblings."
                     self.error_list.append(error_msg)
 
+    # US19 by HL
+    # def first_cousins_should_not_marry(self):
+
+    # US20 by HL
+    # def aunts_and_uncles(self):
+
+    # US21 by JF
+    # def correct_gender_for_role(self):
+
+    # US25 by JF
+    # def unique_first_names_in_families(self):
+
+    # US23 by SJ
+    # def unique_name_and_birth_date(self):
+
+    # US24 by SJ
+    # def unique_families_by_spouses(self):
+
+
     def check_all_objects_sprint_1(self):
         # US01
         self.check_date_b4_current()
@@ -598,6 +617,25 @@ class Gedcom():
             print(error)
             output_stream.write(error + '\n')
         output_stream.close()
+
+    # def check_all_objects_sprint_3(self):
+        # US19 by HL
+        # self.first_cousins_should_not_marry()
+
+        # US20 by HL
+        # self.aunts_and_uncles()
+
+        # US21 by JF
+        # self.correct_gender_for_role()
+
+        # US25 by JF
+        # self.unique_first_names_in_families()
+
+        # US23 by SJ
+        # self.unique_name_and_birth_date()
+
+        # US24 by SJ
+        # self.unique_families_by_spouses()
 
     def create_arrow_output(self):
         for i in range(len(self.line_list)):
