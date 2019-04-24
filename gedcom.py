@@ -697,24 +697,31 @@ class Gedcom():
             output_stream.write(error + '\n')
         output_stream.close()
 
-    # def check_all_objects_sprint_4(self):
+    def check_all_objects_sprint_4(self):
         # US19 by HL
-        # self.first_cousins_should_not_marry()
+        self.list_individual_ages()
 
         # US20 by HL
-        # self.aunts_and_uncles()
+        self.list_multiple_births()
 
         # US21 by JF
-        # self.correct_gender_for_role()
+        self.correct_gender_for_role()
 
         # US25 by JF
-        # self.unique_first_names_in_families()
+        self.unique_first_names_in_families()
 
         # US23 by SJ
-        # self.check_unique_name_and_birth_date()
+        self.check_unique_name_and_birth_date()
 
         # US24 by SJ
-        # self.check_unique_families_by_spouses()
+        self.check_unique_families_by_spouses()
+
+        output_stream = open(self.output_url, "a")
+        output_stream.write("Errors:\n")
+        for error in self.error_list:
+            print(error)
+            output_stream.write(error + '\n')
+        output_stream.close()
 
     def create_arrow_output(self):
         for i in range(len(self.line_list)):
@@ -749,8 +756,3 @@ class Gedcom():
         for i in range(len(self.line_list)):
             print('--> ' + self.line_list[i])
             print(self.output_list[i])
-
-# test_case_13_1 = Gedcom("sprint3test/test_example_13_1")
-# test_case_13_1.siblings_spacing()
-# test_case_14_1 = Gedcom("sprint3test/test_example_14_1")
-# test_case_14_1.multiple_births_less_than_5()

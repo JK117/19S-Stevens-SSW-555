@@ -1,0 +1,11 @@
+test_list_individual_ages (sprint4test.test_gedcom_sprint_04.TestCheckFunctionsSprint04) ... ok
+test_list_multiple_births (sprint4test.test_gedcom_sprint_04.TestCheckFunctionsSprint04) ... ok
+test_correct_gender_for_role (sprint4test.test_gedcom_sprint_04.TestCheckFunctionsSprint04) ... ok
+test_unique_first_names_in_families (sprint4test.test_gedcom_sprint_04.TestCheckFunctionsSprint04) ... ok
+test_check_unique_name_and_birth_date (sprint4test.test_gedcom_sprint_04.TestCheckFunctionsSprint04) ... ok
+test_check_unique_families_by_spouses (sprint4test.test_gedcom_sprint_04.TestCheckFunctionsSprint04) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.010s
+
+OK
