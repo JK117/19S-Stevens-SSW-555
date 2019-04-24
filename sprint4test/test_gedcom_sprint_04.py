@@ -3,29 +3,49 @@ from gedcom import Gedcom
 
 
 class TestCheckFunctionsSprint04(unittest.TestCase):
-    # US19
-    # def test_siblings_spacing(self):
-    #     test_case_13_1 = Gedcom("test_example_13_1")
-    #     test_case_13_1.siblings_spacing()
-    #     test_case_13_1_expected = ["ERROR: US13: Siblings: " + '@I5@' + " and " + '@I4@' + "s' birthdays are not more than 8 months apart or less than 2 days apart."]
-    #     self.assertEqual(test_case_13_1_expected, test_case_13_1.error_list)
-    #
-    #     test_case_13_2 = Gedcom("test_example_13_2")
-    #     test_case_13_2.siblings_spacing()
-    #     test_case_13_2_expected = []
-    #     self.assertEqual(test_case_13_2_expected, test_case_13_2.error_list)
+    # US27
+    def test_list_individual_ages(self):
+        test_case_27_1 = Gedcom("test_example_32_1")
+        temp_test = test_case_27_1.list_individual_ages()
+        test_case_27_1_expected = '''+-------+----------------------+-----+
+|   ID  |         Name         | Age |
++-------+----------------------+-----+
+|  @I1@ |  Jackson /Williams/  |  77 |
+|  @I2@ |    Diana /Smith/     |  82 |
+|  @I3@ |   John /Williams/    |  62 |
+|  @I4@ | Jennifer /Williams/  |  53 |
+|  @I5@ | Elizabeth /Williams/ |  53 |
+| @I17@ |   Karen /Miller3/    |  53 |
+| @I18@ |   Karen /Miller4/    |  53 |
+| @I19@ |   Karen /Miller5/    |  53 |
+|  @I6@ |    Sarah /Adams/     |  62 |
+|  @I7@ |   Micheal /Davis/    |  64 |
+|  @I8@ |  Steven /Williams/   |  34 |
+|  @I9@ |   Charles /Davis/    |  22 |
+| @I10@ |   Robert /Miller/    |  32 |
+| @I11@ |    Karen /Miller/    |  28 |
+| @I12@ |    Nancy /Miller/    |  26 |
+| @I13@ |    Clark /Murphy/    |  53 |
+| @I14@ |   Daniel /Murphy/    |  28 |
+| @I15@ |   Ashley /Murphy/    |  25 |
+| @I16@ |     Carol /Gray/     |  30 |
++-------+----------------------+-----+'''
+        self.assertEqual(test_case_27_1_expected, temp_test)
 
-    # US20
-    # def test_multiple_births_less_than_5(self):
-    #     test_case_14_1 = Gedcom("test_example_14_1")
-    #     test_case_14_1.multiple_births_less_than_5()
-    #     test_case_14_1_expected = ["ERROR: US14: 5 or more Siblings in family: " + '@F1@' + " have same birthdays."]
-    #     self.assertEqual(test_case_14_1_expected, test_case_14_1.error_list)
-    #
-    #     test_case_14_2 = Gedcom("test_example_14_2")
-    #     test_case_14_2.multiple_births_less_than_5()
-    #     test_case_14_2_expected = []
-    #     self.assertEqual(test_case_14_2_expected, test_case_14_2.error_list)
+    # US32
+    def test_list_multiple_births(self):
+        test_case_32_1 = Gedcom("test_example_32_1")
+        temp_test = test_case_32_1.list_multiple_births()
+        test_case_32_1_expected = '''+-------+----------------------+------------+
+|   ID  |         Name         |  Birthday  |
++-------+----------------------+------------+
+|  @I4@ | Jennifer /Williams/  | 1965-05-14 |
+|  @I5@ | Elizabeth /Williams/ | 1965-05-14 |
+| @I17@ |   Karen /Miller3/    | 1965-05-14 |
+| @I18@ |   Karen /Miller4/    | 1965-05-14 |
+| @I19@ |   Karen /Miller5/    | 1965-05-14 |
++-------+----------------------+------------+'''
+        self.assertEqual(test_case_32_1_expected, temp_test)
 
     # US21
     def test_correct_gender_for_role(self):
