@@ -288,7 +288,8 @@ class Gedcom():
                         if "Divorced" in fami.keys():
                             if indi["Death"] < fami["Divorced"]:
                                 error_msg = "ERROR: FAMILY: US06: " + fami['ID'] + ": Divorced date " + \
-                                            str(fami["Divorced"]) + " occurs before " + indi["ID"] + " Death date: " + str(indi["Death"])
+                                            str(fami["Divorced"]) + " occurs before " + indi["ID"] + " Death date: " + \
+                                            str(indi["Death"])
                                 self.error_list.append(error_msg)
         # return True
 
@@ -432,7 +433,7 @@ class Gedcom():
 
     # US13 by HL
     def siblings_spacing(self):
-        timedelta_temp1 = timedelta(seconds=60, minutes=0, hours=0 )
+        timedelta_temp1 = timedelta(seconds=60, minutes=0, hours=0)
         timedelta_temp2 = timedelta(seconds=60, minutes=59, hours=5759)
         for family in self.family_list:
             if len(family['Children']) >= 2:
@@ -543,10 +544,39 @@ class Gedcom():
     # def aunts_and_uncles(self):
 
     # US21 by JF
-    # def correct_gender_for_role(self):
+    def correct_gender_for_role(self):
+        for family in self.family_list:
+            husband_id = family["Husband ID"]
+            wife_id = family["Wife ID"]
+            for individual in self.individual_list:
+                if individual["ID"] == husband_id:
+                    if individual["Gender"] is not 'M':
+                        error_msg = "ERROR: US21: FAMILY: " + family['ID'] + \
+                                    ": Husband: " + husband_id + ": Gender is not male"
+                        self.error_list.append(error_msg)
+                if individual["ID"] == wife_id:
+                    if individual["Gender"] is not 'F':
+                        error_msg = "ERROR: US21: FAMILY: " + family['ID'] + \
+                                    ": Wife: " + wife_id + ": Gender is not female"
+                        self.error_list.append(error_msg)
 
     # US25 by JF
-    # def unique_first_names_in_families(self):
+    def unique_first_names_in_families(self):
+        for family in self.family_list:
+            children_dict = {}
+            for child_id in family["Children"]:
+                for individual in self.individual_list:
+                    if individual["ID"] == child_id:
+                        name_birth_tuple = (individual["Name"], individual["Birthday"])
+                        if name_birth_tuple not in children_dict:
+                            children_dict[name_birth_tuple] = [child_id]
+                        else:
+                            children_dict[name_birth_tuple].append(child_id)
+            for name_birth in children_dict:
+                if len(children_dict[name_birth]) > 1:
+                    error_msg = "ANOMALY: US25: FAMILY: " + family["ID"] + ": Children: " + \
+                                str(children_dict[name_birth]) + ": Has duplicated name and birthday"
+                    self.error_list.append(error_msg)
 
     # US23 by SJ
     def check_unique_name_and_birth_date(self):
@@ -576,7 +606,6 @@ class Gedcom():
                 error_msg = "ANOMALY: US24: FAMILY: " + str(dict_spouses_marriage_date[fam_spouses_marriage_date]) + \
                             " are duplicated."
                 self.error_list.append(error_msg)
-
 
     def check_all_objects_sprint_1(self):
         # US01
