@@ -549,10 +549,33 @@ class Gedcom():
     # def unique_first_names_in_families(self):
 
     # US23 by SJ
-    # def unique_name_and_birth_date(self):
+    def check_unique_name_and_birth_date(self):
+        dict_name_birth_date = {}
+        for individual in self.individual_list:
+            if (individual["Name"],individual["Birthday"]) in dict_name_birth_date:
+                dict_name_birth_date[(individual["Name"],individual["Birthday"])].append(individual["ID"])
+            else:
+                dict_name_birth_date[(individual["Name"],individual["Birthday"])] = [individual["ID"]]
+        for ind_name_birth_date in dict_name_birth_date.keys():
+            if len(dict_name_birth_date[ind_name_birth_date]) > 1:
+                error_msg = "ANOMALY: US23: INDIVIDUAL: " + str(dict_name_birth_date[ind_name_birth_date]) + \
+                            " are duplicated."
+                self.error_list.append(error_msg)
 
     # US24 by SJ
-    # def unique_families_by_spouses(self):
+    def check_unique_families_by_spouses(self):
+        dict_spouses_marriage_date = {}
+        for family in self.family_list:
+            if (family["Married"], family["Husband ID"], family["Wife ID"]) in dict_spouses_marriage_date:
+                dict_spouses_marriage_date[(family["Married"], family["Husband ID"], family["Wife ID"])]\
+                    .append(family["ID"])
+            else:
+                dict_spouses_marriage_date[(family["Married"], family["Husband ID"], family["Wife ID"])] = [family["ID"]]
+        for fam_spouses_marriage_date in dict_spouses_marriage_date.keys():
+            if len(dict_spouses_marriage_date[fam_spouses_marriage_date]) > 1:
+                error_msg = "ANOMALY: US24: FAMILY: " + str(dict_spouses_marriage_date[fam_spouses_marriage_date]) + \
+                            " are duplicated."
+                self.error_list.append(error_msg)
 
 
     def check_all_objects_sprint_1(self):
@@ -618,7 +641,7 @@ class Gedcom():
             output_stream.write(error + '\n')
         output_stream.close()
 
-    # def check_all_objects_sprint_3(self):
+    # def check_all_objects_sprint_4(self):
         # US19 by HL
         # self.first_cousins_should_not_marry()
 
@@ -632,10 +655,10 @@ class Gedcom():
         # self.unique_first_names_in_families()
 
         # US23 by SJ
-        # self.unique_name_and_birth_date()
+        # self.check_unique_name_and_birth_date()
 
         # US24 by SJ
-        # self.unique_families_by_spouses()
+        # self.check_unique_families_by_spouses()
 
     def create_arrow_output(self):
         for i in range(len(self.line_list)):

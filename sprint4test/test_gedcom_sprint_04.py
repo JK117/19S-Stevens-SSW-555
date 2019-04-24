@@ -52,30 +52,29 @@ class TestCheckFunctionsSprint04(unittest.TestCase):
         self.assertEqual(test_case_16_2_expected, test_case_16_2.error_list)
 
     # US23
-    def test_check_no_marriages_to_descendants(self):
-        test_case_17_1 = Gedcom("test_example_17_1")
-        test_case_17_1.check_no_marriages_to_descendants()
-        test_case_17_1_expected = ['ERROR: US17: FAMILY: @F2@, there is marriage between parents and descendants.']
-        self.assertEqual(test_case_17_1_expected, test_case_17_1.error_list)
+    def test_check_unique_name_and_birth_date(self):
+        test_case_23_1 = Gedcom("test_example_23_1")
+        test_case_23_1.check_unique_name_and_birth_date()
+        test_case_23_1_expected = ['ANOMALY: US23: INDIVIDUAL: Jackson /Williams/  1930-09-05 is not unique.']
+        self.assertEqual(test_case_23_1_expected, test_case_23_1.error_list)
 
-        test_case_17_2 = Gedcom("test_example_17_2")
-        test_case_17_2.check_no_marriages_to_descendants()
-        test_case_17_2_expected = []
-        self.assertEqual(test_case_17_2_expected, test_case_17_2.error_list)
+        test_case_23_2 = Gedcom("test_example_23_2")
+        test_case_23_2.check_unique_name_and_birth_date()
+        test_case_23_2_expected = []
+        self.assertEqual(test_case_23_2_expected, test_case_23_2.error_list)
 
     # US24
-    def test_check_siblings_should_not_marry(self):
-        test_case_18_1 = Gedcom("test_example_18_1")
-        test_case_18_1.check_siblings_should_not_marry()
-        test_case_18_1_expected = ['ERROR: US18: FAMILY: @F2@, there is marriage between siblings.']
-        self.assertEqual(test_case_18_1_expected, test_case_18_1.error_list)
+    def test_check_unique_families_by_spouses(self):
+        test_case_24_1 = Gedcom("test_example_24_1")
+        test_case_24_1.check_unique_families_by_spouses()
+        test_case_24_1_expected = ['ANOMALY: US24: FAMILY: 1955-06-08  @I1@  @I2@ is not unique.']
+        self.assertEqual(test_case_24_1_expected, test_case_24_1.error_list)
 
-        test_case_18_2 = Gedcom("test_example_18_2")
-        test_case_18_2.check_siblings_should_not_marry()
-        test_case_18_2_expected = []
-        self.assertEqual(test_case_18_2_expected, test_case_18_2.error_list)
+        test_case_24_2 = Gedcom("test_example_24_2")
+        test_case_24_2.check_unique_families_by_spouses()
+        test_case_24_2_expected = []
+        self.assertEqual(test_case_24_2_expected, test_case_24_2.error_list)
 
 
 if __name__ == '__main__':
     unittest.main()
-
