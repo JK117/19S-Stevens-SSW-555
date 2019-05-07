@@ -4,10 +4,12 @@
 # Author: Shan Jiang
 
 from gedcom import Gedcom
+import us02
+import us04
 
 
 if __name__ == '__main__':
-    test_case = Gedcom("example.ged")
+    test_case = Gedcom("sprint1demo/sprint_1_test")
     # url = input("Please input test GEDCOM file url (press ENTER to use default url [./example.ged]): ")
 
     # Project 02
@@ -19,5 +21,10 @@ if __name__ == '__main__':
     # sprint_1_demo.print_table()
 
     # Project 03 v2
-    test_case.set_output_url("pj_03_output.txt")
-    test_case.print_pretty_table()
+
+    us02.check_birth_b4_marr(test_case)
+    us04.check_marr_b4_div(test_case)
+
+    # test_case.set_output_url("test_output.txt")
+    # test_case.print_pretty_table()
+    print(test_case.error_list)
