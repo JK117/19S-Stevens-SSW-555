@@ -2,9 +2,9 @@
 # BY Shan Jiang
 
 
-def check_unique_families_by_spouses(self):
+def check_unique_families_by_spouses(gedcom):
     dict_spouses_marriage_date = {}
-    for family in self.family_list:
+    for family in gedcom.family_list:
         if (family["Married"], family["Husband ID"], family["Wife ID"]) in dict_spouses_marriage_date:
             dict_spouses_marriage_date[(family["Married"], family["Husband ID"], family["Wife ID"])] \
                 .append(family["ID"])
@@ -14,4 +14,4 @@ def check_unique_families_by_spouses(self):
         if len(dict_spouses_marriage_date[fam_spouses_marriage_date]) > 1:
             error_msg = "ANOMALY: US24: FAMILY: " + str(dict_spouses_marriage_date[fam_spouses_marriage_date]) + \
                         " are duplicated."
-            self.error_list.append(error_msg)
+            gedcom.error_list.append(error_msg)
