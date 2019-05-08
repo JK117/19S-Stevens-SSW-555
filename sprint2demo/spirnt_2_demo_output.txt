@@ -10,7 +10,7 @@ Individuals:
 |  @I5@ | Elizabeth /Williams/ |   F    | 2009-05-14 |  9  |  True |     NA     |  @F1@ |  @F4@  |
 |  @I6@ |    Sarah /Adams/     |   F    | 1957-03-01 |  62 |  True |     NA     |   NA  |  @F5@  |
 |  @I7@ |   Micheal /Davis/    |   M    | 1955-04-01 |  64 |  True |     NA     |   NA  |  @F5@  |
-|  @I8@ |  Steven /Williams/   |   M    | 1945-04-16 |  73 |  True |     NA     |  @F2@ |  @F6@  |
+|  @I8@ |  Steven /Williams/   |   M    | 1945-04-16 |  74 |  True |     NA     |  @F2@ |  @F6@  |
 |  @I9@ |   Charles /Davis/    |   M    | 1696-11-15 | 322 |  True |     NA     |  @F5@ |   NA   |
 | @I10@ |   Robert /Miller/    |   M    | 1961-10-04 |  32 | False | 1994-02-12 |   NA  |  @F3@  |
 | @I11@ |    Karen /Miller/    |   F    | 1990-05-14 |  28 |  True |     NA     |  @F3@ |   NA   |
@@ -43,7 +43,7 @@ ANOMALY: US10: FAMILY: @F2@: Husband: @I3@: Married at age: -33: On: 1982-05-15
 ANOMALY: US10: FAMILY: @F4@: Wife: @I5@: Married at age: -18: On: 1991-06-12
 ANOMALY: US10: FAMILY: @F5@: Husband: @I7@: Married at age: 10: On: 1965-07-12
 ANOMALY: US10: FAMILY: @F5@: Wife: @I6@: Married at age: 8: On: 1965-07-12
-ANOMALY: US22: INDIVIDUAL: @I11@ is not unique.
 ERROR: US12: FAMILY: @F1@: Mother: @I2@ is more than 60 years older than her children: @I3@
 ERROR: US12: FAMILY: @F1@: Father: @I1@ is more than 80 years older than his children: @I3@
 ERROR: US12: FAMILY: @F1@: Mother: @I2@ is more than 60 years older than her children: @I5@
+ANOMALY: US22: INDIVIDUAL: @I11@ is not unique.

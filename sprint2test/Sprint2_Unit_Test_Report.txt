@@ -6,6 +6,6 @@ test_check_parents_not_too_old (sprint2test.test_gedcom_sprint_02.TestCheckFunct
 test_check_unique_id (sprint2test.test_gedcom_sprint_02.TestCheckFunctionsSprint02) ... ok
 
 ----------------------------------------------------------------------
-Ran 6 tests in 0.009s
+Ran 6 tests in 0.021s
 
 OK
