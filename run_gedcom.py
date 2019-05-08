@@ -55,11 +55,11 @@ def main(argv):
             suite = unittest.TestSuite()
             tests = [
                 TestCheckFunctionsSprint01("test_check_date_b4_current"),
-                TestCheckFunctionsSprint01("test_check_birth_b4_marr"),
-                TestCheckFunctionsSprint01("test_check_birth_b4_death"),
-                TestCheckFunctionsSprint01("test_check_marr_b4_div"),
-                TestCheckFunctionsSprint01("test_check_marr_b4_death"),
-                TestCheckFunctionsSprint01("test_check_div_b4_death"),
+                # TestCheckFunctionsSprint01("test_check_birth_b4_marr"),
+                # TestCheckFunctionsSprint01("test_check_birth_b4_death"),
+                # TestCheckFunctionsSprint01("test_check_marr_b4_div"),
+                # TestCheckFunctionsSprint01("test_check_marr_b4_death"),
+                # TestCheckFunctionsSprint01("test_check_div_b4_death"),
                 # TestCheckFunctionsSprint02("test_check_less_then_150_years_old"),
                 # TestCheckFunctionsSprint02("test_check_birth_b4_marriage_of_parents"),
                 # TestCheckFunctionsSprint02("test_check_birth_b4_death_of_parents"),
