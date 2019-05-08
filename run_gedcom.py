@@ -5,6 +5,11 @@
 
 import sys
 import getopt
+import unittest
+from sprint1test.test_gedcom_sprint_01 import TestCheckFunctionsSprint01
+from sprint2test.test_gedcom_sprint_02 import TestCheckFunctionsSprint02
+from sprint3test.test_gedcom_sprint_03 import TestCheckFunctionsSprint03
+from sprint4test.test_gedcom_sprint_04 import TestCheckFunctionsSprint04
 from gedcom import Gedcom
 import us01
 import us02
@@ -38,29 +43,61 @@ def main(argv):
         print('   or: run_gedcom.py --file <file_url>')
         sys.exit(2)
 
+    if len(opts) is 0:
+        print_help()
+        sys.exit()
+
     for opt, arg in opts:
         if opt in ("-h", "--help"):
-            print("run_gedcom.py -h: show help info")
-            print("              -e: run example gedcom file")
-            print("              -t: run unittest")
-            print("              -f <file_url>: run with input file")
-            print("           or --help: show help info")
-            print("              --example: run example gedcom file")
-            print("              --test: run unittest")
-            print("              --file <file_url>: run with input file")
+            print_help()
             sys.exit()
-        # elif opt in ("-t", "--test"):
-
+        elif opt in ("-t", "--test"):
+            suite = unittest.TestSuite()
+            tests = [
+                TestCheckFunctionsSprint01("test_check_date_b4_current"),
+                TestCheckFunctionsSprint01("test_check_birth_b4_marr"),
+                TestCheckFunctionsSprint01("test_check_birth_b4_death"),
+                TestCheckFunctionsSprint01("test_check_marr_b4_div"),
+                TestCheckFunctionsSprint01("test_check_marr_b4_death"),
+                TestCheckFunctionsSprint01("test_check_div_b4_death"),
+                # TestCheckFunctionsSprint02("test_check_less_then_150_years_old"),
+                # TestCheckFunctionsSprint02("test_check_birth_b4_marriage_of_parents"),
+                # TestCheckFunctionsSprint02("test_check_birth_b4_death_of_parents"),
+                # TestCheckFunctionsSprint02("test_check_marriage_after_14"),
+                # TestCheckFunctionsSprint02("test_check_parents_not_too_old"),
+                # TestCheckFunctionsSprint02("test_check_unique_id"),
+                # TestCheckFunctionsSprint03("test_siblings_spacing"),
+                # TestCheckFunctionsSprint03("test_multiple_births_less_than_5"),
+                # TestCheckFunctionsSprint03("test_fewer_than_15_siblings"),
+                # TestCheckFunctionsSprint03("test_male_last_names"),
+                # TestCheckFunctionsSprint03("test_check_no_marriages_to_descendants"),
+                # TestCheckFunctionsSprint03("test_check_siblings_should_not_marry"),
+                # TestCheckFunctionsSprint04("test_list_individual_ages"),
+                # TestCheckFunctionsSprint04("test_list_multiple_births"),
+                # TestCheckFunctionsSprint04("test_correct_gender_for_role"),
+                # TestCheckFunctionsSprint04("test_unique_first_names_in_families"),
+                # TestCheckFunctionsSprint04("test_check_unique_name_and_birth_date"),
+                # TestCheckFunctionsSprint04("test_check_unique_families_by_spouses")
+            ]
+            suite.addTests(tests)
+            with open('Unittest_Report.txt', 'w') as f:
+                runner = unittest.TextTestRunner(stream=f, verbosity=2)
+                runner.run(suite)
         elif opt in ("-e", "--example"):
-            # example_case = Gedcom("example.ged")
-            # example_case.set_output_url("example_case_output.txt")
-            # example_case.print_pretty_table()
             run_gedcom("example.ged", "example_case_output.txt")
         elif opt in ("-f", "--file"):
-            # run_case = Gedcom(arg)
-            # run_case.set_output_url("run_case_output.txt")
-            # run_case.print_pretty_table()
             run_gedcom(arg, "run_case_output.txt")
+
+
+def print_help():
+    print("run_gedcom.py -h: show help info")
+    print("              -e: run example gedcom file")
+    print("              -t: run unittest")
+    print("              -f <file_url>: run with input file")
+    print("           or --help: show help info")
+    print("              --example: run example gedcom file")
+    print("              --test: run unittest")
+    print("              --file <file_url>: run with input file")
 
 
 def run_gedcom(input_url, output_url):
@@ -111,4 +148,4 @@ if __name__ == '__main__':
 
     # test_case.set_output_url("test_output.txt")
     # test_case.print_pretty_table()
-    main()
+    main(sys.argv[1:])

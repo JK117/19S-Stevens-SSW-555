@@ -1,19 +1,17 @@
 import unittest
-from sprint1test.test_gedcom_sprint_01 import TestCheckFunctions
+from sprint1test.test_gedcom_sprint_01 import TestCheckFunctionsSprint01
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
-    tests = [TestCheckFunctions("test_check_date_b4_current"),
-             TestCheckFunctions("test_check_birth_b4_marr"),
-             TestCheckFunctions("test_check_birth_b4_death"),
-             TestCheckFunctions("test_check_marr_b4_div"),
-             TestCheckFunctions("test_check_marr_b4_death"),
-             TestCheckFunctions("test_check_div_b4_death"), ]
+    tests = [TestCheckFunctionsSprint01("test_check_date_b4_current"),
+             TestCheckFunctionsSprint01("test_check_birth_b4_marr"),
+             TestCheckFunctionsSprint01("test_check_birth_b4_death"),
+             TestCheckFunctionsSprint01("test_check_marr_b4_div"),
+             TestCheckFunctionsSprint01("test_check_marr_b4_death"),
+             TestCheckFunctionsSprint01("test_check_div_b4_death")]
     suite.addTests(tests)
 
-    # runner = unittest.TextTestRunner(verbosity=2)
-    # runner.run(suite)
-
-    with open('Sprint1_Unit_Test_Report.txt', 'a') as f:
+    with open('Sprint1_Unit_Test_Report.txt', 'w') as f:
         runner = unittest.TextTestRunner(stream=f, verbosity=2)
         runner.run(suite)
