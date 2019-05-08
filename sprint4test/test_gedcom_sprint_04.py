@@ -88,7 +88,7 @@ class TestCheckFunctionsSprint04(unittest.TestCase):
     def test_check_unique_families_by_spouses(self):
         test_case_24_1 = Gedcom("test_example_24_1")
         test_case_24_1.check_unique_families_by_spouses()
-        test_case_24_1_expected = ["ANOMALY: US24: FAMILY: ['@F1@', '@F2@'] are duplicated."]
+        test_case_24_1_expected = ["ERROR: US24: FAMILY: ['@F1@', '@F2@'] are duplicated."]
         self.assertEqual(test_case_24_1_expected, test_case_24_1.error_list)
 
         test_case_24_2 = Gedcom("test_example_24_2")
