@@ -12,7 +12,7 @@ def check_unique_id(gedcom):
             dict_family_id[family["ID"]] = 1
     for fam_id in dict_family_id.keys():
         if dict_family_id[fam_id] > 1:
-            error_msg = "ANOMALY: US22: FAMILY: " + fam_id + " is not unique."
+            error_msg = "ERROR: US22: FAMILY: " + fam_id + " is not unique."
             gedcom.error_list.append(error_msg)
     for individual in gedcom.individual_list:
         if individual["ID"] in dict_individual_id:
@@ -21,5 +21,5 @@ def check_unique_id(gedcom):
             dict_individual_id[individual["ID"]] = 1
     for ind_id in dict_individual_id.keys():
         if dict_individual_id[ind_id] > 1:
-            error_msg = "ANOMALY: US22: INDIVIDUAL: " + ind_id + " is not unique."
+            error_msg = "ERROR: US22: INDIVIDUAL: " + ind_id + " is not unique."
             gedcom.error_list.append(error_msg)

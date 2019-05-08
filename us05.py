@@ -16,7 +16,7 @@ def check_marr_b4_death(gedcom):
                             'ID'] + ": " + husband_id + ": Death date " + \
                                     str(husband_death) + " occurs before marriage date " + str(marr_date)
                         gedcom.error_list.append(error_msg)
-                        # return False
+
                 if individual['ID'] == wife_id:
                     wife_death = individual['Death']
                     if wife_death < marr_date:
