@@ -8,8 +8,8 @@ Individuals:
 |  @I4@ | Jennifer /Williams/  |   F    | 1962-09-10 |  56 |  True |     NA     |  @F1@ |  @F3@  |
 |  @I5@ | Elizabeth /Williams/ |   F    | 1965-05-14 |  53 |  True |     NA     |  @F1@ |  @F4@  |
 |  @I6@ |    Sarah /Adams/     |   F    | 1957-03-01 |  62 |  True |     NA     |   NA  |  @F5@  |
-|  @I7@ |   Micheal /Davis/    |   M    | 1955-04-01 |  63 |  True |     NA     |   NA  |  @F5@  |
-|  @I8@ |  Steven /Williams/   |   M    | 1985-04-16 |  33 |  True |     NA     |  @F2@ |  @F6@  |
+|  @I7@ |   Micheal /Davis/    |   M    | 1955-04-01 |  64 |  True |     NA     |   NA  |  @F5@  |
+|  @I8@ |  Steven /Williams/   |   M    | 1985-04-16 |  34 |  True |     NA     |  @F2@ |  @F6@  |
 |  @I9@ |   Charles /Davis/    |   M    | 1996-11-15 |  22 |  True |     NA     |  @F5@ |   NA   |
 | @I10@ |   Robert /Miller/    |   M    | 1961-10-04 |  32 | False | 1994-02-12 |   NA  |  @F3@  |
 | @I11@ |    Karen /Miller/    |   F    | 1990-05-14 |  28 |  True |     NA     |  @F3@ |   NA   |
@@ -31,7 +31,7 @@ Families:
 | @F6@ | 2015-04-06 |     NA     |    @I8@    | Steven /Williams/  |  @I16@  |     Carol /Gray/     |            []            |
 +------+------------+------------+------------+--------------------+---------+----------------------+--------------------------+
 Errors:
-ERROR: INDIVIDUAL: US01: @I15@: Birthday 2023-09-07 occurs before today: 2019-03-07
+ERROR: INDIVIDUAL: US01: @I15@: Birthday 2023-09-07 occurs before today: 2019-05-08
 ERROR: FAMILY: US02: @F1@: @I1@: Marriage date 1925-06-08 occurs before birthday 1930-09-05
 ERROR: FAMILY: US02: @F1@: @I2@: Marriage date 1925-06-08 occurs before birthday 1932-07-01
 ERROR: INDIVIDUAL: US03: @I3@: Death date 1955-01-01 occurs before Birthday 1957-02-13
