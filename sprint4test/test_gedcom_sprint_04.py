@@ -1,12 +1,67 @@
 import unittest
 from gedcom import Gedcom
+import us21
+import us23
+import us24
+import us25
+import us27
+import us32
 
 
 class TestCheckFunctionsSprint04(unittest.TestCase):
+    # US21
+    def test_correct_gender_for_role(self):
+        test_case_21_1 = Gedcom("test_example_21_1")
+        us21.correct_gender_for_role(test_case_21_1)
+        test_case_21_1_expected = ["ERROR: US21: FAMILY: @F1@: Husband: @I1@: Gender is not male"]
+        self.assertEqual(test_case_21_1_expected, test_case_21_1.error_list)
+
+        test_case_21_2 = Gedcom("test_example_21_2")
+        us21.correct_gender_for_role(test_case_21_2)
+        test_case_21_2_expected = ["ERROR: US21: FAMILY: @F1@: Wife: @I2@: Gender is not female"]
+        self.assertEqual(test_case_21_2_expected, test_case_21_2.error_list)
+
+    # US23
+    def test_check_unique_name_and_birth_date(self):
+        test_case_23_1 = Gedcom("test_example_23_1")
+        us23.check_unique_name_and_birth_date(test_case_23_1)
+        test_case_23_1_expected = ["ANOMALY: US23: INDIVIDUAL: ['@I1@', '@I2@'] are duplicated."]
+        self.assertEqual(test_case_23_1_expected, test_case_23_1.error_list)
+
+        test_case_23_2 = Gedcom("test_example_23_2")
+        us23.check_unique_name_and_birth_date(test_case_23_2)
+        test_case_23_2_expected = []
+        self.assertEqual(test_case_23_2_expected, test_case_23_2.error_list)
+
+    # US24
+    def test_check_unique_families_by_spouses(self):
+        test_case_24_1 = Gedcom("test_example_24_1")
+        us24.check_unique_families_by_spouses(test_case_24_1)
+        test_case_24_1_expected = ["ERROR: US24: FAMILY: ['@F1@', '@F2@'] are duplicated."]
+        self.assertEqual(test_case_24_1_expected, test_case_24_1.error_list)
+
+        test_case_24_2 = Gedcom("test_example_24_2")
+        us24.check_unique_families_by_spouses(test_case_24_2)
+        test_case_24_2_expected = []
+        self.assertEqual(test_case_24_2_expected, test_case_24_2.error_list)
+
+    # US25
+    def test_unique_first_names_in_families(self):
+        test_case_25_1 = Gedcom("test_example_25_1")
+        us25.unique_first_names_in_families(test_case_25_1)
+        test_case_25_1_expected = []
+        self.assertEqual(test_case_25_1_expected, test_case_25_1.error_list)
+
+        test_case_25_2 = Gedcom("test_example_25_2")
+        us25.unique_first_names_in_families(test_case_25_2)
+        test_case_25_2_expected = ["ANOMALY: US25: FAMILY: @F1@: Children: ['@I4@', '@I5@']: "
+                                   "Has duplicated name and birthday"]
+        self.assertEqual(test_case_25_2_expected, test_case_25_2.error_list)
+
     # US27
     def test_list_individual_ages(self):
         test_case_27_1 = Gedcom("test_example_32_1")
-        temp_test = test_case_27_1.list_individual_ages()
+        temp_test = us27.list_individual_ages(test_case_27_1)
         test_case_27_1_expected = '''+-------+----------------------+-----+
 |   ID  |         Name         | Age |
 +-------+----------------------+-----+
@@ -35,7 +90,7 @@ class TestCheckFunctionsSprint04(unittest.TestCase):
     # US32
     def test_list_multiple_births(self):
         test_case_32_1 = Gedcom("test_example_32_1")
-        temp_test = test_case_32_1.list_multiple_births()
+        temp_test = us32.list_multiple_births(test_case_32_1)
         test_case_32_1_expected = '''+-------+----------------------+------------+
 |   ID  |         Name         |  Birthday  |
 +-------+----------------------+------------+
@@ -46,55 +101,6 @@ class TestCheckFunctionsSprint04(unittest.TestCase):
 | @I19@ |   Karen /Miller5/    | 1965-05-14 |
 +-------+----------------------+------------+'''
         self.assertEqual(test_case_32_1_expected, temp_test)
-
-    # US21
-    def test_correct_gender_for_role(self):
-        test_case_21_1 = Gedcom("test_example_21_1")
-        test_case_21_1.correct_gender_for_role()
-        test_case_21_1_expected = ["ERROR: US21: FAMILY: @F1@: Husband: @I1@: Gender is not male"]
-        self.assertEqual(test_case_21_1_expected, test_case_21_1.error_list)
-
-        test_case_21_2 = Gedcom("test_example_21_2")
-        test_case_21_2.correct_gender_for_role()
-        test_case_21_2_expected = ["ERROR: US21: FAMILY: @F1@: Wife: @I2@: Gender is not female"]
-        self.assertEqual(test_case_21_2_expected, test_case_21_2.error_list)
-
-    # US25
-    def test_unique_first_names_in_families(self):
-        test_case_25_1 = Gedcom("test_example_25_1")
-        test_case_25_1.unique_first_names_in_families()
-        test_case_25_1_expected = []
-        self.assertEqual(test_case_25_1_expected, test_case_25_1.error_list)
-
-        test_case_25_2 = Gedcom("test_example_25_2")
-        test_case_25_2.unique_first_names_in_families()
-        test_case_25_2_expected = ["ANOMALY: US25: FAMILY: @F1@: Children: ['@I4@', '@I5@']: "
-                                   "Has duplicated name and birthday"]
-        self.assertEqual(test_case_25_2_expected, test_case_25_2.error_list)
-
-    # US23
-    def test_check_unique_name_and_birth_date(self):
-        test_case_23_1 = Gedcom("test_example_23_1")
-        test_case_23_1.check_unique_name_and_birth_date()
-        test_case_23_1_expected = ["ANOMALY: US23: INDIVIDUAL: ['@I1@', '@I2@'] are duplicated."]
-        self.assertEqual(test_case_23_1_expected, test_case_23_1.error_list)
-
-        test_case_23_2 = Gedcom("test_example_23_2")
-        test_case_23_2.check_unique_name_and_birth_date()
-        test_case_23_2_expected = []
-        self.assertEqual(test_case_23_2_expected, test_case_23_2.error_list)
-
-    # US24
-    def test_check_unique_families_by_spouses(self):
-        test_case_24_1 = Gedcom("test_example_24_1")
-        test_case_24_1.check_unique_families_by_spouses()
-        test_case_24_1_expected = ["ERROR: US24: FAMILY: ['@F1@', '@F2@'] are duplicated."]
-        self.assertEqual(test_case_24_1_expected, test_case_24_1.error_list)
-
-        test_case_24_2 = Gedcom("test_example_24_2")
-        test_case_24_2.check_unique_families_by_spouses()
-        test_case_24_2_expected = []
-        self.assertEqual(test_case_24_2_expected, test_case_24_2.error_list)
 
 
 if __name__ == '__main__':
