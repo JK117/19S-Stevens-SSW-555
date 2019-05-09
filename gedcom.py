@@ -1,5 +1,7 @@
 import prettytable as pt
 from datetime import datetime
+from datetime import timedelta
+from dateutil.relativedelta import relativedelta
 
 
 def convert_date(date_arr):
@@ -76,10 +78,14 @@ class Gedcom():
                     if self.record_list[idx][0] == '1' and self.record_list[idx][1] == 'FAMS':
                         indi_obj['Spouse'] = self.record_list[idx][2]
                     if 'Birthday' in indi_obj.keys() and 'Death' not in indi_obj.keys():
-                        indi_obj['Age'] = today.year - indi_obj['Birthday'].year - ((today.month, today.day) < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
+                        indi_obj['Age'] = today.year - indi_obj['Birthday'].year \
+                                          - ((today.month, today.day)
+                                             < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
                         indi_obj['Alive'] = True
                     if 'Birthday' in indi_obj.keys() and 'Death' in indi_obj.keys():
-                        indi_obj['Age'] = indi_obj['Death'].year - indi_obj['Birthday'].year - ((indi_obj['Death'].month, indi_obj['Death'].day) < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
+                        indi_obj['Age'] = indi_obj['Death'].year - indi_obj['Birthday'].year \
+                                          - ((indi_obj['Death'].month, indi_obj['Death'].day)
+                                             < (indi_obj['Birthday'].month, indi_obj['Birthday'].day))
                         indi_obj['Alive'] = False
                     idx += 1
                 self.individual_list.append(indi_obj)
@@ -142,8 +148,8 @@ class Gedcom():
                 table_spouse = individual['Spouse']
             else:
                 table_spouse = 'NA'
-            indi_pt.add_row([individual['ID'], individual['Name'], individual["Gender"], str(individual['Birthday']), individual['Age'], individual['Alive'],
-                             table_death, table_child, table_spouse])
+            indi_pt.add_row([individual['ID'], individual['Name'], individual["Gender"], str(individual['Birthday']),
+                             individual['Age'], individual['Alive'], table_death, table_child, table_spouse])
         print(indi_pt)
 
         fam_pt = pt.PrettyTable()
@@ -173,138 +179,6 @@ class Gedcom():
         output_stream.write("Families:\n")
         output_stream.write(str(fam_pt))
         output_stream.write("\n")
-        output_stream.close()
-
-    # US01
-    def check_date_b4_current(self):
-        today = datetime.today().date()
-        for indi in self.individual_list:
-            if 'Birthday' in indi.keys():
-                if indi["Birthday"] > today:
-                    error_msg = "ERROR: INDIVIDUAL: US01: " + indi['ID'] + ": Birthday " + \
-                                str(indi["Birthday"]) + " occurs before today: " + str(today)
-                    self.error_list.append(error_msg)
-            if "Death" in indi.keys():
-                if indi["Death"] > today:
-                    error_msg = "ERROR: INDIVIDUAL: US01: " + indi['ID'] + ": Death date " + \
-                                str(indi["Death"]) + " occurs before today: " + str(today)
-                    self.error_list.append(error_msg)
-        for fami in self.family_list:
-            if "Married" in fami.keys():
-                if fami["Married"] > today:
-                    error_msg = "ERROR: FAMILY: US01: " + fami['ID'] + ": Married Date " + \
-                                str(fami["Married"]) + " occurs before today: " + str(today)
-                    self.error_list.append(error_msg)
-            if "Divorced" in fami.keys():
-                if fami["Divorced"] > today:
-                    error_msg = "ERROR: FAMILY: US01: " + fami['ID'] + ": Divorced Date " + \
-                                str(fami["Divorced"]) + " occurs before today: " + str(today)
-                    self.error_list.append(error_msg)
-        # return True
-
-    # US02
-    def check_birth_b4_marr(self):
-        for family in self.family_list:
-            husband_id = family['Husband ID']
-            wife_id = family['Wife ID']
-            marr_date = family['Married']
-            for individual in self.individual_list:
-                if individual['ID'] == husband_id:
-                    husband_birth = individual['Birthday']
-                    if husband_birth > marr_date:
-                        error_msg = "ERROR: FAMILY: US02: " + family['ID'] + ": " + husband_id + ": Marriage date " + \
-                                    str(marr_date) + " occurs before birthday " + str(husband_birth)
-                        self.error_list.append(error_msg)
-                        # return False
-                if individual['ID'] == wife_id:
-                    wife_birth = individual['Birthday']
-                    if wife_birth > marr_date:
-                        error_msg = "ERROR: FAMILY: US02: " + family['ID'] + ": " + wife_id + ": Marriage date " + \
-                                    str(marr_date) + " occurs before birthday " + str(wife_birth)
-                        self.error_list.append(error_msg)
-                        # return False
-        # return True
-
-    # US03
-    def check_birth_b4_death(self):
-        for individual in self.individual_list:
-            if 'Death' in individual.keys():
-                if individual['Birthday'] > individual['Death']:
-                    error_msg = "ERROR: INDIVIDUAL: US03: " + individual['ID'] + ": Death date " + \
-                                str(individual['Death']) + " occurs before Birthday " + str(individual['Birthday'])
-                    self.error_list.append(error_msg)
-        #             return False
-        # return True
-
-    # US04
-    def check_marr_b4_div(self):
-        for family in self.family_list:
-            if 'Divorced' in family.keys():
-                if family['Divorced'] < family['Married']:
-                    error_msg = "ERROR: FAMILY: US04: " + family['ID'] + ": Divorce date " + \
-                                str(family['Divorced']) + " occurs before marriage date " + str(family['Married'])
-                    self.error_list.append(error_msg)
-                    # return False
-        # return True
-
-    # US05
-    def check_marr_b4_death(self):
-        for family in self.family_list:
-            husband_id = family['Husband ID']
-            wife_id = family['Wife ID']
-            marr_date = family['Married']
-            for individual in self.individual_list:
-                if 'Death' in individual.keys():
-                    if individual['ID'] == husband_id:
-                        husband_death = individual['Death']
-                        if husband_death < marr_date:
-                            error_msg = "ERROR: FAMILY: US03: " + family[
-                                'ID'] + ": " + husband_id + ": Death date " + \
-                                        str(husband_death) + " occurs before marriage date " + str(marr_date)
-                            self.error_list.append(error_msg)
-                            # return False
-                    if individual['ID'] == wife_id:
-                        wife_death = individual['Death']
-                        if wife_death < marr_date:
-                            error_msg = "ERROR: FAMILY: US03: " + family[
-                                'ID'] + ": " + wife_id + ": Death date " + \
-                                        str(wife_death) + " occurs before marriage date " + str(marr_date)
-                            self.error_list.append(error_msg)
-                            # return False
-        # return True
-
-    # US06
-    def check_div_b4_death(self):
-        for indi in self.individual_list:
-            if "Death" in indi.keys():
-                for fami in self.family_list:
-                    if indi["ID"] == fami["Husband ID"] or indi["ID"] == fami["Wife ID"]:
-                        if "Divorced" in fami.keys():
-                            if indi["Death"] < fami["Divorced"]:
-                                error_msg = "ERROR: FAMILY: US06: " + fami['ID'] + ": Divorced date " + \
-                                            str(fami["Divorced"]) + " occurs before " + indi["ID"] + " Death date: " + str(indi["Death"])
-                                self.error_list.append(error_msg)
-        # return True
-
-    def check_all_objects(self):
-        # US01
-        self.check_date_b4_current()
-        # US02
-        self.check_birth_b4_marr()
-        # US03
-        self.check_birth_b4_death()
-        # US04
-        self.check_marr_b4_div()
-        # US05
-        self.check_marr_b4_death()
-        # US06
-        self.check_div_b4_death()
-
-        output_stream = open(self.output_url, "a")
-        output_stream.write("Errors:\n")
-        for error in self.error_list:
-            print(error)
-            output_stream.write(error + '\n')
         output_stream.close()
 
     def create_arrow_output(self):

@@ -1,0 +1,46 @@
+Individuals:
++-------+----------------------+--------+------------+-----+-------+------------+-------+--------+
+|   ID  |         Name         | Gender |  Birthday  | Age | Alive |   Death    | Child | Spouse |
++-------+----------------------+--------+------------+-----+-------+------------+-------+--------+
+|  @I1@ |  Jackson /Williams/  |   M    | 1930-09-05 |  77 | False | 2008-01-01 |   NA  |  @F1@  |
+|  @I2@ |    Diana /Smith/     |   F    | 1932-07-01 |  82 | False | 2015-05-05 |   NA  |  @F2@  |
+|  @I3@ |   John /Williams/    |   M    | 1965-02-13 |  54 |  True |     NA     |  @F1@ |  @F2@  |
+|  @I4@ | Jennifer /Williams/  |   F    | 1965-05-14 |  53 |  True |     NA     |  @F1@ |  @F3@  |
+|  @I5@ | Elizabeth /Williams/ |   F    | 1965-05-14 |  53 |  True |     NA     |  @F1@ |  @F4@  |
+| @I17@ |   Karen /Miller3/    |   F    | 1965-05-14 |  53 |  True |     NA     |  @F1@ |   NA   |
+| @I18@ |   Karen /Miller4/    |   F    | 1965-05-14 |  53 |  True |     NA     |  @F1@ |  @F4@  |
+| @I19@ |   Karen /Miller5/    |   F    | 1965-05-14 |  53 |  True |     NA     |  @F1@ |   NA   |
+|  @I6@ |    Sarah /Adams/     |   F    | 1957-03-01 |  62 |  True |     NA     |   NA  |  @F5@  |
+|  @I7@ |   Micheal /Davis/    |   M    | 1955-04-01 |  64 |  True |     NA     |   NA  |  @F5@  |
+|  @I8@ |  Steven /Williams/   |   M    | 1985-04-16 |  34 |  True |     NA     |  @F2@ |  @F6@  |
+|  @I9@ |   Charles /Davis/    |   M    | 1996-11-15 |  22 |  True |     NA     |  @F5@ |   NA   |
+| @I10@ |   Robert /Miller/    |   M    | 1961-10-04 |  32 | False | 1994-02-12 |   NA  |  @F3@  |
+| @I11@ |    Karen /Miller/    |   F    | 1990-05-14 |  28 |  True |     NA     |  @F3@ |   NA   |
+| @I12@ |    Nancy /Miller/    |   F    | 1992-11-12 |  26 |  True |     NA     |  @F3@ |   NA   |
+| @I13@ |    Clark /Murphy/    |   M    | 1965-10-11 |  53 |  True |     NA     |   NA  |   NA   |
+| @I14@ |   Daniel /Murphy/    |   M    | 1990-06-12 |  28 |  True |     NA     |  @F4@ |   NA   |
+| @I15@ |   Ashley /Murphy/    |   F    | 1993-09-07 |  25 |  True |     NA     |  @F4@ |   NA   |
+| @I16@ |     Carol /Gray/     |   F    | 1988-10-01 |  30 |  True |     NA     |   NA  |  @F6@  |
++-------+----------------------+--------+------------+-----+-------+------------+-------+--------+
+Families:
++------+------------+------------+------------+--------------------+---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  ID  |  Married   |  Divorced  | Husband ID |    Husband Name    | Wife ID |      Wife Name       |                                                                             Children                                                                            |
++------+------------+------------+------------+--------------------+---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| @F1@ | 1955-06-08 |     NA     |    @I1@    | Jackson /Williams/ |   @I2@  |    Diana /Smith/     | ['@I3@', '@I4@', '@I5@', '@I17@', '@I18@', '@I19@', '@I23@', '@I24@', '@I25@', '@I27@', '@I28@', '@I29@', '@I30@', '@I34@', '@I35@', '@I37@', '@I38@', '@I39@'] |
+| @F2@ | 1982-05-15 | 1992-06-22 |    @I3@    |  John /Williams/   |   @I2@  |    Diana /Smith/     |                                                                             ['@I8@']                                                                            |
+| @F3@ | 1988-03-04 |     NA     |   @I10@    |  Robert /Miller/   |   @I4@  | Jennifer /Williams/  |                                                                        ['@I11@', '@I12@']                                                                       |
+| @F4@ | 1991-06-12 |     NA     |   @I18@    |  Karen /Miller4/   |   @I5@  | Elizabeth /Williams/ |                                                                        ['@I14@', '@I15@']                                                                       |
+| @F5@ | 1965-07-12 |     NA     |    @I7@    |  Micheal /Davis/   |   @I6@  |    Sarah /Adams/     |                                                                             ['@I9@']                                                                            |
+| @F6@ | 2015-04-06 |     NA     |    @I8@    | Steven /Williams/  |  @I16@  |     Carol /Gray/     |                                                                                []                                                                               |
++------+------------+------------+------------+--------------------+---------+----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Errors:
+ERROR: US13: Siblings: @I4@ and @I3@s' birthdays are not more than 8 months apart or less than 2 days apart.
+ERROR: US13: Siblings: @I5@ and @I3@s' birthdays are not more than 8 months apart or less than 2 days apart.
+ERROR: US13: Siblings: @I17@ and @I3@s' birthdays are not more than 8 months apart or less than 2 days apart.
+ERROR: US13: Siblings: @I18@ and @I3@s' birthdays are not more than 8 months apart or less than 2 days apart.
+ERROR: US13: Siblings: @I19@ and @I3@s' birthdays are not more than 8 months apart or less than 2 days apart.
+ERROR: US14: 5 or more Siblings in family: @F1@ have same birthdays.
+ANOMALY: US15: FAMILY: @F1@ has: 18 siblings, more than 15
+ANOMALY: US16: FAMILY: @F4@: Male member: Daniel /Murphy/: has different last names
+ERROR: US17: FAMILY: @F2@, there is marriage between parents and descendants.
+ERROR: US18: FAMILY: @F4@, there is marriage between siblings.

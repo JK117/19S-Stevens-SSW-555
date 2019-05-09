@@ -1,0 +1,23 @@
+Individuals:
++------+----------------------+--------+------------+-----+-------+------------+-------+--------+
+|  ID  |         Name         | Gender |  Birthday  | Age | Alive |   Death    | Child | Spouse |
++------+----------------------+--------+------------+-----+-------+------------+-------+--------+
+| @I1@ |  Jackson /Williams/  |   M    | 1930-09-05 |  77 | False | 2008-01-01 |   NA  |  @F1@  |
+| @I2@ |    Diana /Smith/     |   M    | 1932-07-01 |  82 | False | 2015-05-05 |   NA  |  @F1@  |
+| @I3@ |   John /Williams/    |   M    | 1957-02-13 |  62 |  True |     NA     |  @F1@ |  @F2@  |
+| @I4@ | Elizabeth /Williams/ |   F    | 1962-09-10 |  56 |  True |     NA     |  @F1@ |  @F3@  |
+| @I5@ | Elizabeth /Williams/ |   F    | 1962-09-10 |  56 |  True |     NA     |  @F1@ |  @F4@  |
++------+----------------------+--------+------------+-----+-------+------------+-------+--------+
+Families:
++------+------------+----------+------------+--------------------+---------+---------------+--------------------------+
+|  ID  |  Married   | Divorced | Husband ID |    Husband Name    | Wife ID |   Wife Name   |         Children         |
++------+------------+----------+------------+--------------------+---------+---------------+--------------------------+
+| @F1@ | 1955-06-08 |    NA    |    @I1@    | Jackson /Williams/ |   @I2@  | Diana /Smith/ | ['@I3@', '@I4@', '@I5@'] |
+| @F2@ | 1955-06-08 |    NA    |    @I1@    | Jackson /Williams/ |   @I2@  | Diana /Smith/ |            []            |
++------+------------+----------+------------+--------------------+---------+---------------+--------------------------+
+Errors:
+ERROR: US21: FAMILY: @F1@: Wife: @I2@: Gender is not female
+ERROR: US21: FAMILY: @F2@: Wife: @I2@: Gender is not female
+ANOMALY: US25: FAMILY: @F1@: Children: ['@I4@', '@I5@']: Has duplicated name and birthday
+ANOMALY: US23: INDIVIDUAL: ['@I4@', '@I5@'] are duplicated.
+ANOMALY: US24: FAMILY: ['@F1@', '@F2@'] are duplicated.

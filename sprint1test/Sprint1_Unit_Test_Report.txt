@@ -1,0 +1,83 @@
+test_check_date_b4_current (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01) ... ERROR
+test_check_birth_b4_marr (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01) ... ERROR
+test_check_birth_b4_death (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01) ... ERROR
+test_check_marr_b4_div (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01) ... ERROR
+test_check_marr_b4_death (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01) ... ERROR
+test_check_div_b4_death (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01) ... ERROR
+
+======================================================================
+ERROR: test_check_date_b4_current (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/sprint1test/test_gedcom_sprint_01.py", line 18, in test_check_date_b4_current
+    test_case_01_1 = Gedcom("sprint1test/test_example_01_1")
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 24, in __init__
+    self.load_file(input_url)
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 34, in load_file
+    input_stream = open(input_url, "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'sprint1test/test_example_01_1'
+
+======================================================================
+ERROR: test_check_birth_b4_marr (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/sprint1test/test_gedcom_sprint_01.py", line 30, in test_check_birth_b4_marr
+    test_case_02_1 = Gedcom("sprint1test/test_example_02_1")
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 24, in __init__
+    self.load_file(input_url)
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 34, in load_file
+    input_stream = open(input_url, "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'sprint1test/test_example_02_1'
+
+======================================================================
+ERROR: test_check_birth_b4_death (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/sprint1test/test_gedcom_sprint_01.py", line 58, in test_check_birth_b4_death
+    test_case_03_1 = Gedcom("sprint1test/test_example_03_1")
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 24, in __init__
+    self.load_file(input_url)
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 34, in load_file
+    input_stream = open(input_url, "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'sprint1test/test_example_03_1'
+
+======================================================================
+ERROR: test_check_marr_b4_div (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/sprint1test/test_gedcom_sprint_01.py", line 85, in test_check_marr_b4_div
+    test_case_04_1 = Gedcom("sprint1test/test_example_04_1")
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 24, in __init__
+    self.load_file(input_url)
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 34, in load_file
+    input_stream = open(input_url, "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'sprint1test/test_example_04_1'
+
+======================================================================
+ERROR: test_check_marr_b4_death (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/sprint1test/test_gedcom_sprint_01.py", line 107, in test_check_marr_b4_death
+    test_case_05_1 = Gedcom("sprint1test/test_example_05_1")
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 24, in __init__
+    self.load_file(input_url)
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 34, in load_file
+    input_stream = open(input_url, "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'sprint1test/test_example_05_1'
+
+======================================================================
+ERROR: test_check_div_b4_death (sprint1test.test_gedcom_sprint_01.TestCheckFunctionsSprint01)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/sprint1test/test_gedcom_sprint_01.py", line 120, in test_check_div_b4_death
+    test_case_06_1 = Gedcom("sprint1test/test_example_06_1")
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 24, in __init__
+    self.load_file(input_url)
+  File "/Users/jkfan/PycharmProjects/19S-Stevens-SSW-555/gedcom.py", line 34, in load_file
+    input_stream = open(input_url, "r")
+FileNotFoundError: [Errno 2] No such file or directory: 'sprint1test/test_example_06_1'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (errors=6)
